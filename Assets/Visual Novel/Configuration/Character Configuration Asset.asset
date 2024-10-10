@@ -12,3 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ae1f63de16d1f4193d9b7700ffe83e, type: 3}
   m_Name: Character Configuration Asset
   m_EditorClassIdentifier: 
+  characters:
+  - name: Elen
+    alias: 
+    characterType: 0
+    nameColor: {r: 1, g: 0, b: 0, a: 1}
+    dialogueColor: {r: 1, g: 0.8784348, b: 0, a: 1}
+    nameFont: {fileID: 11400000, guid: 15e3ce0338434b14c86aaee9c60efd46, type: 2}
+    dialogueFont: {fileID: 11400000, guid: 0b4ccdafaaed54840b6e0077e6d9fbcc, type: 2}
+  - name: Benjamin
+    alias: 
+    characterType: 0
+    nameColor: {r: 0, g: 1, b: 0.50179243, a: 1}
+    dialogueColor: {r: 0, g: 0.09169197, b: 1, a: 1}
+    nameFont: {fileID: 11400000, guid: 8a686f35b0d6c7342bde9890f0abb61d, type: 2}
+    dialogueFont: {fileID: 11400000, guid: fe007923094e533429c0f7279e2a857c, type: 2}

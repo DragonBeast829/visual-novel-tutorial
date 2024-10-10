@@ -30,7 +30,7 @@ namespace DIALOGUE {
                 char current = rawLine[i];
                 if (current == '\\') {
                     isEscaped = !isEscaped;
-                } else if (current == '\"' && !isEscaped) {
+                } else if (current == '"' && !isEscaped) {
                     if (dialogueStart == -1) {
                         dialogueStart = i;
                     } else if (dialogueEnd == -1) {
@@ -52,7 +52,7 @@ namespace DIALOGUE {
             }
             Debug.Log($"After regex, commandStart: {commandStart}, dialogueStart: {dialogueStart}, dialogueEnd: {dialogueEnd}");
 
-            if (commandStart == -1 && (dialogueStart == -1 && dialogueEnd == -1)) {
+            if (commandStart != -1 && (dialogueStart == -1 && dialogueEnd == -1)) {
                 return ("", "", rawLine.Trim());
             }
 

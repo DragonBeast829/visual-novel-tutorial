@@ -22,21 +22,6 @@ namespace CHARACTERS {
             return config.GetConfig(characterName);
         }
 
-        public Character CreateCharacter(string characterName) {
-            if (characters.ContainsKey(characterName.ToLower())) {
-                Debug.LogError($"Character '{characterName}' already exists.");
-                return null;
-            }
-
-            CHARACTER_INFO info = GetCharacterInfo(characterName);
-
-            Character character = CreateCharacterFromInfo(info);
-
-            characters.Add(characterName.ToLower(), character);
-
-            return character;
-        }
-
         public Character GetCharacter(string characterName, bool createIfDoesNotExist = false) {
             if (characters.ContainsKey(characterName.ToLower())) {
                 return characters[characterName.ToLower()];
@@ -46,19 +31,26 @@ namespace CHARACTERS {
             return null;
         }
 
+        public Character CreateCharacter(string characterName) {
+            if (characters.ContainsKey(characterName.ToLower())) {
+                Debug.LogError($"Character '{characterName}' already exists.");
+                return null;
+            }
+
+            CHARACTER_INFO info = GetCharacterInfo(characterName);
+            Character character = CreateCharacterFromInfo(info);
+            characters.Add(characterName.ToLower(), character);
+            return character;
+        }
         private CHARACTER_INFO GetCharacterInfo(string characterName) {
             CHARACTER_INFO result = new CHARACTER_INFO();
-
             result.name = characterName;
-
             result.config = config.GetConfig(characterName);
-
             return result;
         }
-
+        
         private Character CreateCharacterFromInfo(CHARACTER_INFO info) {
             CharacterConfigData config = info.config;
-
             switch (config.characterType) {
                 case Character.CharacterType.Text:
                     return new CharacterText(info.name, config);

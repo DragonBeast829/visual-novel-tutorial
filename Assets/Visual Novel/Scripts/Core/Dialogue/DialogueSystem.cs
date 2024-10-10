@@ -6,7 +6,7 @@ namespace DIALOGUE {
     public class DialogueSystem : MonoBehaviour {
         [SerializeField] private DialogueSystemConfigurationSO _config;
         public DialogueSystemConfigurationSO config => _config;
-        public DialogueContainer dialogueContainer;
+        public DialogueContainer dialogueContainer = new DialogueContainer();
         private ConversationManager conversationManager;
         private TextArchitect architect;
 
@@ -16,13 +16,12 @@ namespace DIALOGUE {
         public event DialogueSystemEvent onUserPrompt_Next;
 
         public bool isRunningConversation => conversationManager.isRunning;
-
         void Awake() {
             if (instance == null) {
                 instance = this;
                 Initialize();
             } else {
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
             }
 
             
@@ -34,6 +33,8 @@ namespace DIALOGUE {
 
             architect = new TextArchitect(dialogueContainer.dialogueText);
             conversationManager = new ConversationManager(architect);
+
+            _initialized = true;
         }
 
         public void OnUserPrompt_Next() {

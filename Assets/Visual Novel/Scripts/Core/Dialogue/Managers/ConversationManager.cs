@@ -32,11 +32,6 @@ namespace DIALOGUE {
             return process;
         }
 
-        public void ApplySpeakerDataToDialogueContainer(string speakerName) {
-            Character character = CharacterManager.instance.GetCharacter(speakerName);
-
-        }
-
         public void StopConversation() {
             if (!isRunning) return;
 

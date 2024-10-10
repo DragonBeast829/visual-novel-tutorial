@@ -59,8 +59,16 @@ namespace DIALOGUE {
                     }
                 } else if (match.Value == EXPRESSIONCAST_ID) {
                     startIndex = match.Index + EXPRESSIONCAST_ID.Length;
-                    endIndex = i < matches.Count - 1 ? matches[i + 1].Index : rawSpeaker.Length;
-                    string castExp = rawSpeaker.Substring(startIndex, endIndex - (startIndex + 1));
+                    //endIndex = i < matches.Count - 1 ? matches[i + 1].Index : rawSpeaker.Length;
+                    int indexPad = 0;
+                    if (i < matches.Count - 1) {
+                        endIndex = matches[i + 1].Index;
+                        indexPad = 1;
+                    } else {
+                        endIndex = rawSpeaker.Length;
+                    }
+                    
+                    string castExp = rawSpeaker.Substring(startIndex, endIndex - startIndex + indexPad);
 
                     CastExpressions = castExp.Split(EXPRESSIONLAYER_JOINER)
                     .Select(x => {
