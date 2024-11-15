@@ -19,18 +19,15 @@ namespace TESTING {
             // CharacterSprite guard = CreateCharacter("Guard as Generic") as CharacterSprite;
             // CharacterSprite guardRed = CreateCharacter("Guard Red as Generic") as CharacterSprite;
             CharacterSprite raelin = CreateCharacter("Raelin") as CharacterSprite;
-            CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
-            raelin.SetPosition(new Vector2(0, 0));
-            stickman.SetPosition(new Vector2(1, 0));
+            // CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
+            CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
 
-            raelin.Animate("Shiver", true);
-            yield return raelin.Say("i'm cold");
+            raelin.SetPosition(Vector2.zero);
+            mao.SetPosition(new Vector2(1, 0));
 
-            stickman.Animate("Hop");
-            yield return stickman.Say("no");
+            yield return new WaitForSeconds(1);
 
-            raelin.Animate("Shiver", false);
-            yield return raelin.Say("oh ok");
+            mao.SetMotion("Magic Heart Success");
         }
         
         // Update is called once per frame

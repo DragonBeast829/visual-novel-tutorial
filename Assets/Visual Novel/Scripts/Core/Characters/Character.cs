@@ -50,7 +50,13 @@ namespace CHARACTERS {
             this.config = config;
 
             if (prefab != null) {
-                GameObject ob = Object.Instantiate(prefab, characterManager.characterPanel);
+                RectTransform parentPanel = config.characterType switch {
+                    CharacterType.Sprite or CharacterType.SpriteSheet => characterManager.characterPanel,
+                    CharacterType.Live2D => characterManager.characterPanelLive2D,
+                    CharacterType.Model3D => characterManager.characterPanelModel3D,
+                    _ => null,
+                };
+                GameObject ob = Object.Instantiate(prefab, parentPanel);
                 ob.name = characterManager.FormatCharacterPath(characterManager.characterPrefabNameFormat, name);
                 ob.SetActive(true);
                 root = ob.GetComponent<RectTransform>();
