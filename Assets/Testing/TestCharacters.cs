@@ -18,16 +18,18 @@ namespace TESTING {
         IEnumerator Test() {
             // CharacterSprite guard = CreateCharacter("Guard as Generic") as CharacterSprite;
             // CharacterSprite guardRed = CreateCharacter("Guard Red as Generic") as CharacterSprite;
-            CharacterSprite raelin = CreateCharacter("Raelin") as CharacterSprite;
+            CharacterLive2D natori = CreateCharacter("Natori") as CharacterLive2D;
             // CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
             CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
 
-            raelin.SetPosition(Vector2.zero);
+            natori.SetPosition(Vector2.zero);
             mao.SetPosition(new Vector2(1, 0));
 
             yield return new WaitForSeconds(1);
-
-            mao.SetMotion("Magic Heart Success");
+            mao.SetExpression(5);
+            mao.SetMotion("Bounce");
+            natori.SetExpression(2);
+            natori.SetMotion("Glasses Push");
         }
         
         // Update is called once per frame
