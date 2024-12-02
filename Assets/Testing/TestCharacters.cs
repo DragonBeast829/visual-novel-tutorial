@@ -16,25 +16,23 @@ namespace TESTING {
         }
 
         IEnumerator Test() {
-            // CharacterSprite guard = CreateCharacter("Guard as Generic") as CharacterSprite;
-            // CharacterSprite guardRed = CreateCharacter("Guard Red as Generic") as CharacterSprite;
-            CharacterLive2D natori = CreateCharacter("Natori") as CharacterLive2D;
-            // CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
+            CharacterLive2D rice = CreateCharacter("Rice") as CharacterLive2D;
             CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
-
-            natori.SetPosition(Vector2.zero);
-            mao.SetPosition(new Vector2(1, 0));
+            CharacterLive2D natori = CreateCharacter("Natori") as CharacterLive2D;
+            CharacterLive2D koharu = CreateCharacter("Koharu") as CharacterLive2D;
+            
+            rice.SetPosition(new Vector2(0.3f, 0));
+            mao.SetPosition(new Vector2(0.4f, 0));
+            natori.SetPosition(new Vector2(0.5f, 0));
+            koharu.SetPosition(new Vector2(0.6f, 0));
 
             yield return new WaitForSeconds(1);
-            mao.SetExpression(5);
-            mao.SetMotion("Bounce");
-            natori.SetExpression(2);
-            natori.SetMotion("Glasses Push");
-        }
-        
-        // Update is called once per frame
-        void Update() {
 
+            CharacterManager.instance.SortCharacters(new string[] { "Koharu", "Natori", "Mao", "Rice" });
+
+            yield return new WaitForSeconds(1);
+
+            rice.SetPriority(5);
         }
     }
 }

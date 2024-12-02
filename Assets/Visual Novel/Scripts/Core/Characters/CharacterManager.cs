@@ -143,8 +143,8 @@ namespace CHARACTERS {
         private void SortCharacters(List<Character> charactersSortingOrder) {
             int i = 0;
             foreach (Character character in charactersSortingOrder) {
-                Debug.Log($"{character.name} priority is {character.priority}");
                 character.root.SetSiblingIndex(i++);
+                character.OnSort(i);
             }
         }
 
