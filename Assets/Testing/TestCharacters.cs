@@ -16,23 +16,17 @@ namespace TESTING {
         }
 
         IEnumerator Test() {
-            CharacterLive2D rice = CreateCharacter("Rice") as CharacterLive2D;
-            CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
-            CharacterLive2D natori = CreateCharacter("Natori") as CharacterLive2D;
-            CharacterLive2D koharu = CreateCharacter("Koharu") as CharacterLive2D;
-            
-            rice.SetPosition(new Vector2(0.3f, 0));
-            mao.SetPosition(new Vector2(0.4f, 0));
-            natori.SetPosition(new Vector2(0.5f, 0));
-            koharu.SetPosition(new Vector2(0.6f, 0));
+            CharacterModel3D skeleton = CreateCharacter("Skeleton") as CharacterModel3D;
+            CharacterModel3D skeleton2 = CreateCharacter("Skeleton2 as Skeleton") as CharacterModel3D;
+
+            yield return skeleton.MoveToPosition(new Vector2(1, 0));
+            yield return skeleton2.MoveToPosition(Vector2.zero);
+
+            skeleton.SetMotion("Jump");
 
             yield return new WaitForSeconds(1);
 
-            CharacterManager.instance.SortCharacters(new string[] { "Koharu", "Natori", "Mao", "Rice" });
-
-            yield return new WaitForSeconds(1);
-
-            rice.SetPriority(5);
+            skeleton2.SetMotion("Jump");
         }
     }
 }

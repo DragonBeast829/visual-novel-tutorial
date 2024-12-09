@@ -54156,7 +54156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterpanel: {fileID: 1001563792}
   _characterpanel_live2D: {fileID: 935627405}
-  _characterpanel_model3D: {fileID: 0}
+  _characterpanel_model3D: {fileID: 1201368769}
 --- !u!43 &978318149
 Mesh:
   m_ObjectHideFlags: 0
@@ -123079,12 +123079,12 @@ PrefabInstance:
     - target: {fileID: 6780369735278813912, guid: 5baaf8ed1ded15a4982389b6a9bad9e7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -14.15625
+      value: -14.156246
       objectReference: {fileID: 0}
     - target: {fileID: 6780369735278813912, guid: 5baaf8ed1ded15a4982389b6a9bad9e7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -39.21878
+      value: -39.218765
       objectReference: {fileID: 0}
     - target: {fileID: 8495675794810652612, guid: 5baaf8ed1ded15a4982389b6a9bad9e7,
         type: 3}
@@ -124317,6 +124317,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131605619703671176, guid: f71143c3fae51654d875925b81c2670a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0005187988
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
