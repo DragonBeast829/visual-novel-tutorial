@@ -9,6 +9,7 @@ namespace CHARACTERS {
         public const string CHARACTER_RENDER_GROUP_PREFAB_NAME_FORMAT = "RenderGroup - [{0}]";
         public const string CHARACTER_RENDER_TEXTURE_NAME_FORMAT = "RenderTexture";
         public const int CHARACTER_STACKING_DEPTH = 15;
+        public const float EXPRESSION_TRANSITION_SPEED = 100f;
 
         private GameObject renderGroup;
         private Camera camera;
@@ -16,6 +17,8 @@ namespace CHARACTERS {
         private Animator modelAnimator;
         private SkinnedMeshRenderer modelExpressionController;
         private RawImage renderer;
+
+        private Dictionary<string, Coroutine> expressionCoroutines = new Dictionary<string, Coroutine>();
 
         public CharacterModel3D(string name, CharacterConfigData config, GameObject prefab, string rootAssetsFolder) : base(name, config, prefab) {
             Debug.Log($"Created Model3D Character: '{name}'");
@@ -42,6 +45,42 @@ namespace CHARACTERS {
 
         public void SetMotion(string motionName) {
             modelAnimator.Play(motionName);
+        }
+
+        public void SetExpression(string blendShapeName, float weight, float speedMultiplier = 1, bool immediate = false) {
+            if (modelExpressionController == null) {
+                Debug.LogWarning($"Character {name} does not have an expression controller. Blend Shapes may be null [{modelExpressionController.name}]");
+                return;
+            }
+
+            if (expressionCoroutines.ContainsKey(blendShapeName)) {
+                characterManager.StopCoroutine(expressionCoroutines[blendShapeName]);
+                expressionCoroutines.Remove(blendShapeName);
+            }
+
+            Coroutine expressionCoroutine = characterManager.StartCoroutine(ExpressionCoroutine(blendShapeName, weight, speedMultiplier, immediate));
+            expressionCoroutines[blendShapeName] = expressionCoroutine;
+        }
+
+        private IEnumerator ExpressionCoroutine(string blendShapeName, float weight, float speedMultiplier = 1, bool immediate = false) {
+            int blendShapeIndex = modelExpressionController.sharedMesh.GetBlendShapeIndex(blendShapeName);
+            if (blendShapeIndex == -1) {
+                Debug.LogWarning($"Character {name} does not have a blend shape by the name of '{blendShapeName}' [{modelExpressionController.name}]");
+                yield break;
+            }
+
+            if (immediate) {
+                modelExpressionController.SetBlendShapeWeight(blendShapeIndex, weight);
+            } else {
+                float currentValue = modelExpressionController.GetBlendShapeWeight(blendShapeIndex);
+                while (currentValue != weight) {
+                    currentValue = Mathf.MoveTowards(currentValue, weight, Time.deltaTime * EXPRESSION_TRANSITION_SPEED * speedMultiplier);
+                    modelExpressionController.SetBlendShapeWeight(blendShapeIndex, currentValue);
+                    yield return null;
+                }
+            }
+
+            expressionCoroutines.Remove(blendShapeName);
         }
     }
 }

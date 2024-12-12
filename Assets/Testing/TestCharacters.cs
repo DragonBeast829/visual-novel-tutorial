@@ -17,16 +17,15 @@ namespace TESTING {
 
         IEnumerator Test() {
             CharacterModel3D skeleton = CreateCharacter("Skeleton") as CharacterModel3D;
-            CharacterModel3D skeleton2 = CreateCharacter("Skeleton2 as Skeleton") as CharacterModel3D;
 
-            yield return skeleton.MoveToPosition(new Vector2(1, 0));
-            yield return skeleton2.MoveToPosition(Vector2.zero);
+            yield return skeleton.MoveToPosition(new Vector2(0.5f, 0));
 
-            skeleton.SetMotion("Jump");
+            skeleton.SetExpression("Angry", 100);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
 
-            skeleton2.SetMotion("Jump");
+            skeleton.SetExpression("Angry", 0, immediate: true);
+            skeleton.SetExpression("Sad", 100, immediate: true);
         }
     }
 }
