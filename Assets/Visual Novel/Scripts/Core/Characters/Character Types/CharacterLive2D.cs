@@ -19,7 +19,7 @@ namespace CHARACTERS {
         private float xScale;
 
         public override bool isVisible {
-            get => isRevealing || renderController.Opacity == 1;
+            get => isRevealing || renderController.Opacity > 0;
             set => renderController.Opacity = value ? 1 : 0;
         }
 
@@ -74,23 +74,22 @@ namespace CHARACTERS {
             }
         }
 
-        public override IEnumerator ChangingColor(Color color, float speed)
+        public override IEnumerator ChangingColor(float speed)
         {
-            yield return ChangingColorL2D(color, speed);
-
+            if (!isChangingColor) {
+                yield return ChangingColorL2D(speed);
+            }
             co_changingColor = null;
         }
 
-        public override IEnumerator Highlighting(bool highlight, float speedMultiplier)
+        public override IEnumerator Highlighting(float speedMultiplier)
         {
-            Color targetColor = displayColor;
-
-            yield return ChangingColorL2D(targetColor, speedMultiplier);
+            yield return ChangingColorL2D(speedMultiplier);
 
             co_highlighting = null;
         }
 
-        private IEnumerator ChangingColorL2D(Color targetColor, float speed) {
+        private IEnumerator ChangingColorL2D(float speed) {
             CubismRenderer[] renderers = renderController.Renderers;
             Color startColor = renderers[0].Color;
 
@@ -98,7 +97,7 @@ namespace CHARACTERS {
 
             while (colorPercent != 1) {
                 colorPercent = Mathf.Clamp01(colorPercent + DEFAULT_TRANSITION_SPEED * speed * Time.deltaTime);
-                Color currentColor = Color.Lerp(startColor, targetColor, colorPercent);
+                Color currentColor = Color.Lerp(startColor, displayColor, colorPercent);
 
                 foreach (CubismRenderer renderer in renderController.Renderers) {
                     renderer.Color = currentColor;

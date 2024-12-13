@@ -18,7 +18,7 @@ namespace CHARACTERS {
         private string artAssetsDirectory = "";
 
         public override bool isVisible  {
-            get { return isRevealing || rootCG.alpha == 1; }
+            get { return isRevealing || rootCG.alpha > 0; }
             set { rootCG.alpha = value ? 1 : 0; }
         }
 
@@ -109,9 +109,9 @@ namespace CHARACTERS {
             }
         }
 
-        public override IEnumerator ChangingColor(Color color, float speed) {
+        public override IEnumerator ChangingColor(float speed) {
             foreach (CharacterSpriteLayer layer in layers) {
-                layer.TransitionColor(color, speed);
+                layer.TransitionColor(displayColor, speed);
             }
 
             yield return null;
@@ -123,7 +123,7 @@ namespace CHARACTERS {
             co_changingColor = null;
         }
 
-        public override IEnumerator Highlighting(bool highlight, float speedMultiplier)
+        public override IEnumerator Highlighting(float speedMultiplier)
         {
             Color targetColor = displayColor;
 

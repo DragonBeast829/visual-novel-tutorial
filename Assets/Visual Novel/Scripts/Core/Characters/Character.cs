@@ -167,12 +167,12 @@ namespace CHARACTERS {
 
             if (isChangingColor) characterManager.StopCoroutine(co_changingColor);
 
-            co_changingColor = characterManager.StartCoroutine(ChangingColor(displayColor, speed));
+            co_changingColor = characterManager.StartCoroutine(ChangingColor(speed));
 
             return co_changingColor;
         }
 
-        public virtual IEnumerator ChangingColor(Color color, float speed) {
+        public virtual IEnumerator ChangingColor(float speed) {
             Debug.Log("Color changing is not applicable on this character type!");
             yield return null;
         }
@@ -184,7 +184,7 @@ namespace CHARACTERS {
 
             highlighted = true;
 
-            co_highlighting = characterManager.StartCoroutine(Highlighting(highlighted, speed));
+            co_highlighting = characterManager.StartCoroutine(Highlighting(speed));
 
             return co_highlighting;
         }
@@ -196,12 +196,12 @@ namespace CHARACTERS {
 
             highlighted = false;
 
-            co_highlighting = characterManager.StartCoroutine(Highlighting(highlighted, speed));
+            co_highlighting = characterManager.StartCoroutine(Highlighting(speed));
 
             return co_highlighting;
         }
 
-        public virtual IEnumerator Highlighting(bool highlight, float speedMultiplier) {
+        public virtual IEnumerator Highlighting(float speedMultiplier) {
             Debug.Log("Highlighting is not applicable on this character type!");
             yield return null;
         }

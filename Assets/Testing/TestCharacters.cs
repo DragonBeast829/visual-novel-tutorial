@@ -16,16 +16,27 @@ namespace TESTING {
         }
 
         IEnumerator Test() {
-            CharacterModel3D skeleton = CreateCharacter("Skeleton") as CharacterModel3D;
+            CharacterModel3D skeleton = CreateCharacter("skeleton") as CharacterModel3D;
+            CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
+            CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
 
-            yield return skeleton.MoveToPosition(new Vector2(0.5f, 0));
+            stickman.SetPosition(Vector2.zero);
+            mao.SetPosition(new Vector2(0.5f, 0));
+            skeleton.SetPosition(Vector3.right);
+            
+            yield return new WaitForSeconds(1);
+            
+            stickman.FaceRight();
+            mao.FaceRight();
+            skeleton.FaceRight();
 
-            skeleton.SetExpression("Angry", 100);
+            yield return new WaitForSeconds(2f);
 
-            yield return new WaitForSeconds(3);
+            stickman.FaceLeft();
+            mao.FaceLeft();
+            skeleton.FaceLeft();
 
-            skeleton.SetExpression("Angry", 0, immediate: true);
-            skeleton.SetExpression("Sad", 100, immediate: true);
+            yield return new WaitForSeconds(2f);
         }
     }
 }
