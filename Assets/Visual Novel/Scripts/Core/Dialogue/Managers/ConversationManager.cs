@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CHARACTERS;
 using COMMANDS;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DIALOGUE {
@@ -66,10 +67,33 @@ namespace DIALOGUE {
 
         IEnumerator Line_RunDialogue(DIALOGUE_LINE line) {
             if (line.hasSpeaker) {
-                dialogueSystem.ShowSpeakerName(line.speakerData.displayName);
+                HandleSpeakerLogic(line.speakerData);
             }
 
             yield return BuildLineSegments(line.dialogueData);
+        }
+
+        private void HandleSpeakerLogic(DL_SPEAKER_DATA speakerData) {
+            bool characterMustBeCreated = speakerData.makeCharacterEnter || speakerData.isCastingPosition || speakerData.isCastingExpressions;
+
+            Character character = CharacterManager.instance.GetCharacter(speakerData.name, createIfDoesNotExist: characterMustBeCreated);
+
+            if (speakerData.makeCharacterEnter && !character.isVisible && !character.isRevealing) {
+                character.Show();
+            }
+
+            dialogueSystem.ShowSpeakerName(speakerData.displayName);
+            DialogueSystem.instance.ApplySpeakerDataToDialogueContainer(speakerData.name);
+
+            if (speakerData.isCastingExpressions) {
+                character.MoveToPosition(speakerData.castPosition);
+            }
+
+            if (speakerData.isCastingExpressions) {
+                foreach (var ce in speakerData.CastExpressions) {
+                    character.OnReceiveCastingExpression(ce.layer, ce.expression);
+                }
+            }
         }
 
         IEnumerator Line_RunCommands(DIALOGUE_LINE line) {

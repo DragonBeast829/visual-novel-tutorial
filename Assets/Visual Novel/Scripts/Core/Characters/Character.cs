@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CHARACTERS {
     public abstract class Character {
-        public const bool ENABLE_ON_START = true;
+        public const bool ENABLE_ON_START = false;
         private const float UNHIGHLIGHTED_DARKEN_STRENGTH = 0.65f;
         public const bool DEFAULT_ORIENTATION_IS_FACING_LEFT = true;
         public const string ANIMATION_REFRESH_TRIGGER = "Refresh";
@@ -251,6 +251,10 @@ namespace CHARACTERS {
         }
 
         public virtual void OnSort(int sortingIndex) {
+            return;
+        }
+
+        public virtual void OnReceiveCastingExpression(int layer, string expression) {
             return;
         }
 

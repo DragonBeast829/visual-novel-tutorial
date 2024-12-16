@@ -48,7 +48,7 @@ namespace CHARACTERS {
             return null;
         }
 
-        public Character CreateCharacter(string characterName) {
+        public Character CreateCharacter(string characterName, bool revealAfterCreation = false) {
             if (characters.ContainsKey(characterName.ToLower())) {
                 Debug.LogError($"Character '{characterName}' already exists.");
                 return null;
@@ -57,6 +57,7 @@ namespace CHARACTERS {
             CHARACTER_INFO info = GetCharacterInfo(characterName);
             Character character = CreateCharacterFromInfo(info);
             characters.Add(info.name.ToLower(), character);
+            if (revealAfterCreation) character.Show();
             return character;
         }
         private CHARACTER_INFO GetCharacterInfo(string characterName) {
