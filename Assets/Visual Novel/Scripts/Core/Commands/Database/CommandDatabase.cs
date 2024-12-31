@@ -10,6 +10,7 @@ namespace COMMANDS {
         public bool HasCommand(string commandName) => database.ContainsKey(commandName);
 
         public void AddCommand(string commandName, Delegate command) {
+            commandName = commandName.ToLower();
             if (!HasCommand(commandName)) {
                 database.Add(commandName, command);
             } else {
@@ -18,6 +19,7 @@ namespace COMMANDS {
         }
 
         public Delegate GetCommand(string commandName) {
+            commandName = commandName.ToLower();
             if (!HasCommand(commandName)) {
                 Debug.LogError($"Command '{commandName}' does not exist in the database.");
                 return null;

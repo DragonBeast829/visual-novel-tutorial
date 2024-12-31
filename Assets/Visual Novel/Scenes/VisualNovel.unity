@@ -125914,6 +125914,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RenderGroup - [Skeleton]
       objectReference: {fileID: 0}
+    - target: {fileID: 37724892759876455, guid: f710745a713a10a4a8907e8cbc00b0f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5671980331196952713, guid: f710745a713a10a4a8907e8cbc00b0f7,
         type: 3}
       propertyPath: m_LocalPosition.x
