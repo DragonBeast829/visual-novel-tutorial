@@ -1,15 +1,9 @@
 wait(1), createcharacter(Stickman -e true), createcharacter(Raelin), createcharacter("Guard1 as Generic" -e true -i true)
 
-movecharacter(Stickman 1 -2.6 0.75)
+[wait]movecharacter(Stickman 1 -2.5 -spd 0.1)
 
-wait(1000)
+hide(Stickman Raelin Guard1 -spd 0.1)
 
-show(Stickman Raelin Guard1 -immediate false)
+Stella "Now we are invisible"
 
-Narrator "Showing characters."
-
-enter Female Student 2 [blush] "I'm lacking anything of substance to say."
-
-enter Stickman as ??? at 1 [0:2,1:happy 2] "How is everyone doing today?"
-
-Raelin "Fine.{wa 0.5} Couldn't be better."
+show(Stickman Raelin Guard1 -spd 0.1)

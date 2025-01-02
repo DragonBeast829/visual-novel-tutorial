@@ -4,15 +4,15 @@ using UnityEngine;
 using System.Linq;
 using System.Reflection;
 using System;
+using UnityEngine.Events;
 
 namespace COMMANDS {
     public class CommandManager : MonoBehaviour {
         public static CommandManager instance { get; private set; }
-
-        private static Coroutine process = null;
-        public static bool isRunningProcess => process != null;
-
         private CommandDatabase database;
+
+        private List<CommandProcess> activeProcesses = new List<CommandProcess>();
+        private CommandProcess topProcess => activeProcesses.Last();
 
         private void Awake() {
             if (instance == null) {
@@ -32,7 +32,7 @@ namespace COMMANDS {
             }
         }
 
-        public Coroutine Execute(string commandName, params string[] args) {
+        public CoroutineWrapper Execute(string commandName, params string[] args) {
             Delegate command = database.GetCommand(commandName);
 
             if (command == null) { return null; }
@@ -40,26 +40,46 @@ namespace COMMANDS {
             return StartProcess(commandName, command, args);
         }
 
-        private Coroutine StartProcess(string commandName, Delegate command, string[] args) {
-            StopCurrentProcess();
+        private CoroutineWrapper StartProcess(string commandName, Delegate command, string[] args) {
+            System.Guid processID = System.Guid.NewGuid();
+            CommandProcess cmd = new CommandProcess(processID, commandName, command, null, args, null);
+            activeProcesses.Add(cmd);
 
-            process = StartCoroutine(RunningProcess(command, args));
+            Coroutine co = StartCoroutine(RunningProcess(cmd));
+            
+            cmd.runningProcess = new CoroutineWrapper(this, co);
 
-            return process;
+            return cmd.runningProcess;
         }
 
-        private void StopCurrentProcess() {
-            if (isRunningProcess) {
-                StopCoroutine(process);
+        public void StopCurrentProcess() {
+            if (topProcess != null) {
+                KillProcess(topProcess);
+            }
+        }
+
+        public void StopAllProcesses() {
+            foreach (var c in activeProcesses) {
+                if (c.runningProcess != null && !c.runningProcess.IsDone) c.runningProcess.Stop();
+                c.onTerminateAction?.Invoke();
+            }
+            activeProcesses.Clear();
+        }
+
+        private IEnumerator RunningProcess(CommandProcess process) {
+            yield return WaitingForProcessToComplete(process.command, process.args);
+
+            KillProcess(process);
+        }
+
+        public void KillProcess(CommandProcess cmd) {
+            activeProcesses.Remove(cmd);
+
+            if (cmd.runningProcess != null && !cmd.runningProcess.IsDone) {
+                cmd.runningProcess.Stop();
             }
 
-            process = null;
-        }
-
-        private IEnumerator RunningProcess(Delegate command, string[] args) {
-            yield return WaitingForProcessToComplete(command, args);
-
-            process = null;
+            cmd.onTerminateAction?.Invoke();
         }
 
         private IEnumerator WaitingForProcessToComplete(Delegate command, string[] args) {
@@ -76,7 +96,15 @@ namespace COMMANDS {
             } else if (command is Func<string[], IEnumerator>) {
                 yield return ((Func<string[], IEnumerator>)command)(args);
             }
+        }
 
+        public void AddTerminationActionToCurrentProcess(UnityAction action) {
+            CommandProcess process = topProcess;
+            
+            if (process == null) return;
+            
+            process.onTerminateAction = new UnityEvent();
+            process.onTerminateAction.AddListener(action);
         }
     }
 }

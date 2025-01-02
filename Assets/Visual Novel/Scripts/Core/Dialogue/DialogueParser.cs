@@ -10,14 +10,10 @@ namespace DIALOGUE {
         public static DIALOGUE_LINE Parse(string rawLine) {
 
             (string speaker, string dialogue, string commands) = RipContent(rawLine);
-            Debug.Log($"speaker: {speaker}");
-            Debug.Log($"dialogue: {dialogue}");
-            Debug.Log($"commands: {commands}");
 
             return new DIALOGUE_LINE(speaker, dialogue, commands);
         }
         private static (string, string, string) RipContent(string rawLine) {
-            Debug.Log("In rip content");
             string speaker = "";
             string dialogue = "";
             string commands = "";
@@ -40,7 +36,6 @@ namespace DIALOGUE {
                     isEscaped = false;
                 }
             }
-            Debug.Log($"Before regex, commands: {commands}");
             Regex commandRegex = new Regex(commandRegexPattern);
             MatchCollection matches = commandRegex.Matches(rawLine);
             int commandStart = -1;
@@ -50,13 +45,11 @@ namespace DIALOGUE {
                     break;
                 }
             }
-            Debug.Log($"After regex, commandStart: {commandStart}, dialogueStart: {dialogueStart}, dialogueEnd: {dialogueEnd}");
 
             if (commandStart != -1 && (dialogueStart == -1 && dialogueEnd == -1)) {
                 return ("", "", rawLine.Trim());
             }
 
-            Debug.Log($"dialogueStart: {dialogueStart}\ndialogueEnd: {dialogueEnd}\ncommandStart: {commandStart}");
             if (dialogueStart != -1 && dialogueEnd != -1 && (commandStart == -1 || commandStart > dialogueEnd)) {
                 speaker = rawLine.Substring(0, dialogueStart).Trim();
                 dialogue = rawLine.Substring(dialogueStart + 1, dialogueEnd - dialogueStart - 1).Replace("\\\"","\"");

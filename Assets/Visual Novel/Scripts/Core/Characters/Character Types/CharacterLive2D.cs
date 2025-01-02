@@ -52,12 +52,12 @@ namespace CHARACTERS {
             return -1;
         }
 
-        public override IEnumerator ShowingOrHiding(bool show)
+        public override IEnumerator ShowingOrHiding(bool show, float speedMultipler = 1f)
         {
             float targetAlpha = show ? 1f : 0f;
 
             while (renderController.Opacity != targetAlpha) {
-                renderController.Opacity = Mathf.MoveTowards(renderController.Opacity, targetAlpha, DEFAULT_TRANSITION_SPEED * Time.deltaTime);
+                renderController.Opacity = Mathf.MoveTowards(renderController.Opacity, targetAlpha, DEFAULT_TRANSITION_SPEED * Time.deltaTime * speedMultipler);
                 yield return null;
             }
 

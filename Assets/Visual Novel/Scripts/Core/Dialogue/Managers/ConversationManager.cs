@@ -4,6 +4,7 @@ using CHARACTERS;
 using COMMANDS;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DIALOGUE {
     public class ConversationManager {
@@ -43,23 +44,20 @@ namespace DIALOGUE {
         IEnumerator RunningConversation(List<string> conversation) {
             for (int i = 0; i < conversation.Count; i++) {
                 if (string.IsNullOrWhiteSpace(conversation[i])) continue;
-                Debug.Log("Parsing line");
-                Debug.Log($"Conversation i({i}): {conversation[i]}");
                 DIALOGUE_LINE line = DialogueParser.Parse(conversation[i]);
 
                 if (line.hasDialogue) {
-                    Debug.Log("Running dialogue");
                     yield return Line_RunDialogue(line);
                 }
 
                 if (line.hasCommands) {
-                    Debug.Log("Running commands");
                     yield return Line_RunCommands(line);
                 }
 
                 if (line.hasDialogue) {
-                    Debug.Log("Waiting for input");
                     yield return WaitForUserInput();
+
+                    CommandManager.instance.StopAllProcesses();
                 }
 ;
             }
@@ -101,7 +99,14 @@ namespace DIALOGUE {
 
             foreach(DL_COMMAND_DATA.Command command in commands) {
                 if (command.waitForCompletion || command.name == "wait") {
-                    yield return CommandManager.instance.Execute(command.name, command.arguments);
+                    CoroutineWrapper cw = CommandManager.instance.Execute(command.name, command.arguments);
+                    while (!cw.IsDone) {
+                        if (userPrompt) {
+                            CommandManager.instance.StopCurrentProcess();
+                            userPrompt = false;
+                        }
+                        yield return null;
+                    }
                 }
                 CommandManager.instance.Execute(command.name, command.arguments);
             }

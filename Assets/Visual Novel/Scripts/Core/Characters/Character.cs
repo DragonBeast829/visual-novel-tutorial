@@ -78,27 +78,27 @@ namespace CHARACTERS {
         public void ResetConfigurationData() => config = CharacterManager.instance.GetCharacterConfig(name);
         public void UpdateTextCustomizationsOnScreen() => dialogueSystem.ApplySpeakerDataToDialogueContainer(config);
         
-        public virtual Coroutine Show() {
+        public virtual Coroutine Show(float speedMultipler = 1f) {
             if (isRevealing) return co_revealing;
 
             if (isHiding) characterManager.StopCoroutine(co_hiding);
 
-            co_revealing = characterManager.StartCoroutine(ShowingOrHiding(true));
+            co_revealing = characterManager.StartCoroutine(ShowingOrHiding(true, speedMultipler));
 
             return co_revealing;
         }
 
-        public virtual Coroutine Hide() {
+        public virtual Coroutine Hide(float speedMultipler = 1f) {
             if (isHiding) return co_hiding;
 
             if (isRevealing) characterManager.StopCoroutine(co_revealing);
 
-            co_hiding = characterManager.StartCoroutine(ShowingOrHiding(false));
+            co_hiding = characterManager.StartCoroutine(ShowingOrHiding(false, speedMultipler));
 
             return co_hiding;
         }
 
-        public virtual IEnumerator ShowingOrHiding(bool show) {
+        public virtual IEnumerator ShowingOrHiding(bool show, float speedMultipler = 1f) {
             Debug.Log("Show/Hide cannot be called from a base character type.");
             yield return null;
         }
