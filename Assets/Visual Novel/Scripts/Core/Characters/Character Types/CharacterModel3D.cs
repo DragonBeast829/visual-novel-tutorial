@@ -139,12 +139,21 @@ namespace CHARACTERS {
             co_changingColor = null;
         }
 
-        public override IEnumerator Highlighting(float speedMultiplier)
+        public override IEnumerator Highlighting(float speedMultiplier, bool immediate = false)
         {
             if (!isChangingColor) {
-                yield return ChangingColor(speedMultiplier);
+                if (immediate) ApplyColorToRenderers(displayColor);
+                else yield return ChangingRendererColor(speedMultiplier);
             }
             co_highlighting = null;
+        }
+
+        private void ApplyColorToRenderers(Color c) {
+            renderer.color = c;
+
+            foreach(var or in oldRenderers) {
+                or.oldImage.color = c;
+            }
         }
 
         private IEnumerator ChangingRendererColor(float speedMultipler) {

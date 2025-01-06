@@ -1,6 +1,18 @@
-wait(1), createcharacter(Stickman -e true), createcharacter(Raelin), createcharacter("Guard1 as Generic" -e true -i true)
+wait(1), createcharacter(Stickman -e true), createcharacter(Raelin -e true -i true), createcharacter("Guard1 as Generic")
 
-[wait]movecharacter(Stickman 1 -2.5 -spd 0.1)
+Raelin.SetPosition(1), Stickman.SetPosition(0)
+
+[wait]unhighlight(Stickman Raelin), wait(1), [wait]highlight(Stickman Raelin), wait(1)
+Guard1.show(-i true), wait(0.5)
+[wait]highlight(Stickman -o true), wait(1), [wait]unhighlight(stickman -o true), wait(1)
+
+wait(10)
+
+[wait]movecharacter(Stickman 1 -2.5 -spd 0.5)
+
+[wait]Stickman.hide(), [wait]Stickman.show()
+
+[wait]Stickman.move(0 1 -spd 0.5)
 
 hide(Stickman Raelin Guard1 -spd 0.1)
 

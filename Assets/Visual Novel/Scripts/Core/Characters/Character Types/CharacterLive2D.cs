@@ -82,9 +82,15 @@ namespace CHARACTERS {
             co_changingColor = null;
         }
 
-        public override IEnumerator Highlighting(float speedMultiplier)
+        public override IEnumerator Highlighting(float speedMultiplier, bool immediate = false)
         {
-            yield return ChangingColorL2D(speedMultiplier);
+            if (!isChangingColor) {
+                if (immediate) {
+                    foreach(var renderer in renderController.Renderers) renderer.Color = displayColor;
+                } else {
+                    yield return ChangingColorL2D(speedMultiplier); 
+                }
+            }
 
             co_highlighting = null;
         }
