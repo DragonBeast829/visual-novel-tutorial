@@ -27,20 +27,20 @@ public class GraphicObject
     private Coroutine co_fadingIn = null;
     private Coroutine co_fadingOut = null;
 
-    public GraphicObject(GraphicLayer layer, string graphicPath, Texture tex) {
+    public GraphicObject(GraphicLayer layer, string graphicPath, Texture tex, bool immediate) {
         this.graphicPath = graphicPath;
         this.layer = layer;
         GameObject ob = new GameObject();
         ob.transform.SetParent(layer.panel);
         renderer = ob.AddComponent<RawImage>();
         graphicName = tex.name;
-        InitGraphic();
+        InitGraphic(immediate);
         renderer.name = string.Format(NAME_FORMAT, graphicName);
         renderer.texture = tex;
         renderer.material.SetTexture(MATERIAL_FIELD_MAINTEX, tex); 
     }
 
-    public GraphicObject(GraphicLayer layer, string graphicPath, VideoClip clip, bool useAudio) {
+    public GraphicObject(GraphicLayer layer, string graphicPath, VideoClip clip, bool useAudio, bool immediate) {
         this.graphicPath = graphicPath;
         this.layer = layer;
         GameObject ob = new GameObject();
@@ -48,7 +48,7 @@ public class GraphicObject
         renderer = ob.AddComponent<RawImage>();
         graphicName = clip.name;
         renderer.name = string.Format(NAME_FORMAT, graphicName);
-        InitGraphic();
+        InitGraphic(immediate);
         RenderTexture tex = new RenderTexture(Mathf.RoundToInt(clip.width), Mathf.RoundToInt(clip.height), 0);
         renderer.material.SetTexture(MATERIAL_FIELD_MAINTEX, tex); 
         video = renderer.AddComponent<VideoPlayer>();
@@ -60,7 +60,7 @@ public class GraphicObject
         video.isLooping = true;
         video.audioOutputMode = VideoAudioOutputMode.AudioSource;
         audio = video.AddComponent<AudioSource>();
-        audio.volume = 0;
+        audio.volume = immediate ? 1 : 0;
         if (!useAudio) audio.mute = true;
         video.SetTargetAudioSource(0, audio);
         video.frame = 0;
@@ -70,7 +70,7 @@ public class GraphicObject
         video.enabled = true;
     }
 
-    private void InitGraphic() {
+    private void InitGraphic(bool immediate) {
         renderer.transform.localPosition = Vector3.zero;
         renderer.transform.localScale = Vector3.one;
 
@@ -81,9 +81,9 @@ public class GraphicObject
         rect.offsetMax = Vector2.one;
 
         renderer.material = GetTransitionMaterial();
-
-        renderer.material.SetFloat(MATERIAL_FIELD_BLEND, 0);
-        renderer.material.SetFloat(MATERIAL_FIELD_ALPHA, 0);
+        float startingOpacity = immediate ? 1f : 0f;
+        renderer.material.SetFloat(MATERIAL_FIELD_BLEND, startingOpacity);
+        renderer.material.SetFloat(MATERIAL_FIELD_ALPHA, startingOpacity);
     }
 
     private Material GetTransitionMaterial() {

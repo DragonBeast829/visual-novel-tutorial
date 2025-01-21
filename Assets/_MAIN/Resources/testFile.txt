@@ -1,21 +1,9 @@
-wait(1), createcharacter(Stickman -e true), createcharacter(Raelin -e true -i true), createcharacter("Guard1 as Generic")
+wait(1)
 
-Raelin.SetPosition(1), Stickman.SetPosition(0)
+SetLayerMedia(background "Fantasy Landscape" -aud true -spd 0.7 -blend hurricane -i true)
 
-[wait]unhighlight(Stickman Raelin), wait(1), [wait]highlight(Stickman Raelin), wait(1)
-Guard1.show(-i true), wait(0.5)
-[wait]highlight(Stickman -o true), wait(1), [wait]unhighlight(stickman -o true), wait(1)
+CreateCharacter(Stickman -e true -i true)
 
-wait(10)
+Stickman "Welcome to Space!"
 
-[wait]movecharacter(Stickman 1 -2.5 -spd 0.5)
-
-[wait]Stickman.hide(), [wait]Stickman.show()
-
-[wait]Stickman.move(0 1 -spd 0.5)
-
-hide(Stickman Raelin Guard1 -spd 0.1)
-
-Stella "Now we are invisible"
-
-show(Stickman Raelin Guard1 -spd 0.1)
+SetLayerMedia(cinematic -m "~/Graphics/Gallery/flower")
