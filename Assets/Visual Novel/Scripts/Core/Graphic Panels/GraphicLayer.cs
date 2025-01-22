@@ -65,8 +65,14 @@ public class GraphicLayer
         oldGraphics.Clear();
     }
 
-    public void Clear() {
-        if (currentGraphic != null) currentGraphic.FadeOut();
-        foreach (var g in oldGraphics) g.FadeOut();
+    public void Clear(float transitionSpeed = 1, Texture blendTexture = null, bool immediate = false) {
+        if (currentGraphic != null) {
+            if (!immediate) currentGraphic.FadeOut(transitionSpeed, blendTexture);
+            else currentGraphic.Destroy();
+        }
+        foreach (var g in oldGraphics) {
+            if (!immediate) currentGraphic.FadeOut(transitionSpeed, blendTexture);
+            else currentGraphic.Destroy();
+        }
     }
 }

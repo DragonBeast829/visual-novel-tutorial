@@ -1,9 +1,19 @@
 wait(1)
 
-SetLayerMedia(background "Fantasy Landscape" -aud true -spd 0.7 -blend hurricane -i true)
+SetLayerMedia(background Nebula), SetLayerMedia(background 1 SpaceshipInterior)
 
 CreateCharacter(Stickman -e true -i true)
 
 Stickman "Welcome to Space!"
 
+ClearLayerMedia(background -b hypno)
+
+Stickman "Background should be cleared"
+
 SetLayerMedia(cinematic -m "~/Graphics/Gallery/flower")
+
+Stickman "Cinematic layer"
+
+ClearLayerMedia(cinematic -i true)
+
+Stickman "It should be cleared"
