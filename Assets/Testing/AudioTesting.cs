@@ -15,17 +15,17 @@ namespace TESTING {
 
         IEnumerator Running() {
             CharacterSprite Stickman = CreateCharacter("Stickman") as CharacterSprite;
+            Character Person = CreateCharacter("Person");
             Stickman.Show();
-
-            yield return new WaitForSeconds(0.5f);
 
             AudioManager.instance.PlaySoundEffect("Audio/SFX/RadioStatic", loop: true);
 
-            yield return Stickman.Say("I'm going to turn off the radio.");
+            yield return Person.Say("Please turn off the radio.");
 
             AudioManager.instance.StopSoundEffect("RadioStatic");
+            AudioManager.instance.PlayVoice("Audio/Voices/exclamation");
 
-            Stickman.Say("It's off now!");
+            Stickman.Say("Okay!");
         }
     }
 }
