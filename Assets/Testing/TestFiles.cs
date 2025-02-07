@@ -12,6 +12,9 @@ namespace TESTING {
         }
 
         IEnumerator Run() {
+            Debug.Log("Playing");
+            AudioManager.instance.PlayVoice("Audio/Voices/exclamation");
+            Debug.Log("Played");
             List<string> lines = FileManager.ReadTextAsset(fileName, false);
 
             foreach (string line in lines) {
