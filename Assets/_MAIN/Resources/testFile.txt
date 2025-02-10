@@ -1,4 +1,2 @@
-enter Stickman "foo"
-"bar"
-"foo bar"
-"foo bar baz"
+enter Stickman "Hello!"
+enter Raelin "Hello!"

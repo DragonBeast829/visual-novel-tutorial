@@ -20,6 +20,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 0.8784348, b: 0, a: 1}
     nameFont: {fileID: 11400000, guid: 15e3ce0338434b14c86aaee9c60efd46, type: 2}
     dialogueFont: {fileID: 11400000, guid: 0b4ccdafaaed54840b6e0077e6d9fbcc, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Raelin
     alias: 
     characterType: 2
@@ -27,6 +29,8 @@ MonoBehaviour:
     dialogueColor: {r: 0, g: 0.09169197, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 8a686f35b0d6c7342bde9890f0abb61d, type: 2}
     dialogueFont: {fileID: 11400000, guid: fe007923094e533429c0f7279e2a857c, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Generic
     alias: 
     characterType: 2
@@ -34,6 +38,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 0, b: 0.715981, a: 1}
     nameFont: {fileID: 11400000, guid: 606e4f2b533313848b60785c9382ff05, type: 2}
     dialogueFont: {fileID: 11400000, guid: af29e82c2e47e344585e5130011db2ca, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Female Student 2
     alias: 
     characterType: 1
@@ -41,6 +47,8 @@ MonoBehaviour:
     dialogueColor: {r: 0.4528302, g: 0.1986472, b: 0.38106087, a: 1}
     nameFont: {fileID: 11400000, guid: fa793238e3b71994da6062c1417b8f4c, type: 2}
     dialogueFont: {fileID: 11400000, guid: 2ddd733fb9a1fc44283d595c7f08a65e, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Mao
     alias: 
     characterType: 3
@@ -48,6 +56,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Koharu
     alias: 
     characterType: 3
@@ -55,6 +65,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Natori
     alias: 
     characterType: 3
@@ -62,6 +74,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Rice
     alias: 
     characterType: 3
@@ -69,6 +83,8 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
   - name: Skeleton
     alias: 
     characterType: 4
@@ -76,3 +92,5 @@ MonoBehaviour:
     dialogueColor: {r: 1, g: 1, b: 1, a: 1}
     nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontScale: 1
+    dialogueFontScale: 1
