@@ -1,7 +1,4 @@
-PlayAmbience(RainyMood)
-PlaySong(Calm)
-PlayVoice(wakeup)
-enter Stickman "Hello!"
-
-StopSong()
-StopAmbience()
+enter Stickman "foo"
+"bar"
+"foo bar"
+"foo bar baz"

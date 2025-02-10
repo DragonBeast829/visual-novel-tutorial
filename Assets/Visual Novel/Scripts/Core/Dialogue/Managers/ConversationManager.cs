@@ -43,7 +43,9 @@ namespace DIALOGUE {
 
         IEnumerator RunningConversation(List<string> conversation) {
             for (int i = 0; i < conversation.Count; i++) {
+                // ignore blank lines
                 if (string.IsNullOrWhiteSpace(conversation[i])) continue;
+
                 DIALOGUE_LINE line = DialogueParser.Parse(conversation[i]);
 
                 if (line.hasDialogue) {
@@ -54,6 +56,7 @@ namespace DIALOGUE {
                     yield return Line_RunCommands(line);
                 }
 
+                // wait for user input if dialogue was in this line
                 if (line.hasDialogue) {
                     yield return WaitForUserInput();
 
@@ -161,9 +164,11 @@ namespace DIALOGUE {
         }
 
         IEnumerator WaitForUserInput() {
+            dialogueSystem.prompt.Show();
             while (!userPrompt) {
                 yield return null;
             }
+            dialogueSystem.prompt.Hide();
             userPrompt = false;
         }
     }
