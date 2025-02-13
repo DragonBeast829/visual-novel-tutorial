@@ -34,7 +34,6 @@ namespace DIALOGUE {
             Vector3 targetPos = finalCharacter.bottomRight;
             float characterWidth = finalCharacter.pointSize * 0.5f;
             targetPos = new Vector3(targetPos.x + characterWidth, targetPos.y, 0);
-            Debug.Log(targetPos);
             root.localPosition = targetPos;
         }
 

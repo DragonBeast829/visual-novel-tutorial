@@ -14,6 +14,7 @@ public class GraphicObject
     private const string MATERIAL_FIELD_BLENDTEX = "_BlendTex";
     private const string MATERIAL_FIELD_BLEND = "_Blend";
     private const string MATERIAL_FIELD_ALPHA = "_Alpha";
+    private const string DEFAULT_UI_MATERIAL = "Default UI Material";
     public RawImage renderer;
 
     private GraphicLayer layer;
@@ -112,11 +113,18 @@ public class GraphicObject
     private IEnumerator Fading(float target, float speed, Texture blend) {
         bool isBlending = blend != null;
         bool fadingIn = target > 0;
+
+        if (renderer.material.name == DEFAULT_UI_MATERIAL) {
+            Texture tex = renderer.material.GetTexture(MATERIAL_FIELD_MAINTEX);
+            renderer.material = GetTransitionMaterial();
+            renderer.material.SetTexture(MATERIAL_FIELD_MAINTEX, tex);
+        }
+
         renderer.material.SetTexture(MATERIAL_FIELD_BLENDTEX, blend);
         renderer.material.SetFloat(MATERIAL_FIELD_ALPHA, isBlending ? 1f : fadingIn ? 0 : 1);
         renderer.material.SetFloat(MATERIAL_FIELD_BLEND, isBlending ? fadingIn ? 0 : 1 : 1);
         string opacityParam = isBlending ? MATERIAL_FIELD_BLEND : MATERIAL_FIELD_ALPHA;
-        while(renderer.material.GetFloat(opacityParam) != target) {
+        while (renderer.material.GetFloat(opacityParam) != target) {
             float opacity = Mathf.MoveTowards(renderer.material.GetFloat(opacityParam), target, speed * Time.deltaTime);
             renderer.material.SetFloat(opacityParam, opacity);
             if (isVideo) audio.volume = opacity;
@@ -125,8 +133,14 @@ public class GraphicObject
         co_fadingIn = null;
         co_fadingOut = null;
 
-        if (target == 0) Destroy();
-        else DestroyBackgroundGraphicsOnLayer();
+        if (target == 0) {
+            Destroy();
+        }
+        else {
+            DestroyBackgroundGraphicsOnLayer();
+            renderer.texture = renderer.material.GetTexture(MATERIAL_FIELD_MAINTEX);
+            renderer.material = null;
+        }
     }
 
     public void Destroy() {

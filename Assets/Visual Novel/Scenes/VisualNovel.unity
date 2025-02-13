@@ -10075,6 +10075,7 @@ MonoBehaviour:
       root: {fileID: 495679762}
       nameText: {fileID: 1968731223}
     dialogueText: {fileID: 1564460936}
+  mainCanvas: {fileID: 1241543173}
   prompt: {fileID: 1486314940}
 --- !u!1 &162721333
 GameObject:
@@ -39479,6 +39480,7 @@ GameObject:
   - component: {fileID: 655691839}
   - component: {fileID: 655691841}
   - component: {fileID: 655691840}
+  - component: {fileID: 655691842}
   m_Layer: 5
   m_Name: Root Container
   m_TagString: Untagged
@@ -39546,6 +39548,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655691838}
   m_CullTransparentMesh: 1
+--- !u!225 &655691842
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655691838}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!43 &656012600
 Mesh:
   m_ObjectHideFlags: 0
@@ -69802,6 +69816,7 @@ GameObject:
   - component: {fileID: 1241543172}
   - component: {fileID: 1241543171}
   - component: {fileID: 1241543170}
+  - component: {fileID: 1241543173}
   m_Layer: 5
   m_Name: Canvas - Main
   m_TagString: Untagged
@@ -69892,6 +69907,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &1241543173
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241543168}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1256730515
 GameObject:
   m_ObjectHideFlags: 0

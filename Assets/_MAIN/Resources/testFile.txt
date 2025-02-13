@@ -1,2 +1,19 @@
-enter Stickman "Hello!"
-enter Raelin "Hello!"
+SetLayerMedia(background "BG Meadow")
+
+CreateCharacter(Stickman -e true -i true)
+
+Stickman "Hide/Show dialogue box"
+
+HideDB()
+
+wait(2)
+
+ShowDB()
+
+Stickman "Hide/Show UI"
+
+HideUI()
+
+wait(2)
+
+ShowUI()

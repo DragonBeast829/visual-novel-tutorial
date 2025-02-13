@@ -9,6 +9,7 @@ namespace DIALOGUE {
         public DialogueContainer dialogueContainer = new DialogueContainer();
         private ConversationManager conversationManager;
         private TextArchitect architect;
+        [SerializeField] private CanvasGroup mainCanvas;
 
         public static DialogueSystem instance { get; private set; }
 
@@ -18,6 +19,7 @@ namespace DIALOGUE {
         public bool isRunningConversation => conversationManager.isRunning;
         
         public DialogueContinuePrompt prompt;
+        private CanvasGroupController cgController;
 
         void Awake() {
             if (instance == null) {
@@ -26,8 +28,6 @@ namespace DIALOGUE {
             } else {
                 DestroyImmediate(gameObject);
             }
-
-            
         }
 
         bool _initialized = false;
@@ -36,6 +36,9 @@ namespace DIALOGUE {
 
             architect = new TextArchitect(dialogueContainer.dialogueText);
             conversationManager = new ConversationManager(architect);
+
+            cgController = new CanvasGroupController(this, mainCanvas);
+            dialogueContainer.Initialize();
 
             _initialized = true;
         }
@@ -80,5 +83,10 @@ namespace DIALOGUE {
             Debug.Log("Starting conversation");
             return conversationManager.StartConversation(conversation);
         }
+
+        public bool isVisible => cgController.isVisible;
+        public Coroutine Show(float speed = 1, bool immediate = false) => cgController.Show(speed, immediate);
+
+        public Coroutine Hide(float speed = 1, bool immediate = false) => cgController.Hide(speed, immediate);
     }
 }
