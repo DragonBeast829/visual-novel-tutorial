@@ -1,19 +1,5 @@
-SetLayerMedia(background "BG Meadow")
+Narrator "The main character is <mainChar>"
 
-CreateCharacter(Stickman -e true -i true)
+<mainChar> "My name is <mainChar>.{c} What time is it?"
 
-Stickman "Hide/Show dialogue box"
-
-HideDB()
-
-wait(2)
-
-ShowDB()
-
-Stickman "Hide/Show UI"
-
-HideUI()
-
-wait(2)
-
-ShowUI()
+Narrator "The time is <time>."

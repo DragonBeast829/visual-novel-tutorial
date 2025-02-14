@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: Character Configuration Asset
   m_EditorClassIdentifier: 
   characters:
+  - name: <mainChar>
+    alias: 
+    characterType: 0
+    nameColor: {r: 0, g: 0.6028018, b: 1, a: 1}
+    dialogueColor: {r: 0, g: 0.8196079, b: 1, a: 1}
+    nameFont: {fileID: 11400000, guid: 6a888d69a87eec245b2ce096aa58c7b4, type: 2}
+    dialogueFont: {fileID: 11400000, guid: ffa5a4cc46a31cf41b8c4ae60b57f04f, type: 2}
+    nameFontScale: 2
+    dialogueFontScale: 1.2
   - name: Stickman
     alias: 
     characterType: 1
