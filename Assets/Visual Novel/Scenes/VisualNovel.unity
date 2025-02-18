@@ -37619,6 +37619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 611434348}
+  - component: {fileID: 611434350}
   - component: {fileID: 611434349}
   m_Layer: 0
   m_Name: PlayerInput Manager
@@ -37654,6 +37655,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22f72098e4cc624cbb8fd495279938e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &611434350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611434347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 1b0fb8a14a476c9419e067566a361bdb,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10eaf5cf-6210-4718-bca2-2f270494ded3
+    m_ActionName: General/Next[/Keyboard/space,/Keyboard/enter]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: General
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!43 &615625265
 Mesh:
   m_ObjectHideFlags: 0
@@ -92290,6 +92326,7 @@ GameObject:
   - component: {fileID: 1654611039}
   - component: {fileID: 1654611040}
   - component: {fileID: 1654611041}
+  - component: {fileID: 1654611042}
   m_Layer: 0
   m_Name: Testing
   m_TagString: Untagged
@@ -92331,12 +92368,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654611038}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72a7d47ff4bc08a45bdc61cee83ca4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fileToRead: {fileID: 4900000, guid: cc3d1b8f6c36c7649a0c71f5b00c1394, type: 3}
+--- !u!114 &1654611042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654611038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3185abba7287b824cbc6552a5d059cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  font: {fileID: 0}
 --- !u!43 &1663515810
 Mesh:
   m_ObjectHideFlags: 0
@@ -124378,6 +124428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character - [Skeleton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434591842782386206, guid: f71143c3fae51654d875925b81c2670a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278910088865599235, guid: f71143c3fae51654d875925b81c2670a,
         type: 3}

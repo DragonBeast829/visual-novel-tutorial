@@ -16,27 +16,18 @@ namespace TESTING {
         }
 
         IEnumerator Test() {
-            CharacterModel3D skeleton = CreateCharacter("skeleton") as CharacterModel3D;
-            CharacterSprite stickman = CreateCharacter("Stickman") as CharacterSprite;
-            CharacterLive2D mao = CreateCharacter("Mao") as CharacterLive2D;
-
-            stickman.SetPosition(Vector2.zero);
-            mao.SetPosition(new Vector2(0.5f, 0));
-            skeleton.SetPosition(Vector3.right);
+            Character Monk = CreateCharacter("Monk as Generic");
             
-            yield return new WaitForSeconds(1);
-            
-            stickman.FaceRight();
-            mao.FaceRight();
-            skeleton.FaceRight();
+            yield return Monk.Say("Normal dialogue configuration");
 
-            yield return new WaitForSeconds(2f);
+            Monk.SetDialogueColor(Color.red);
+            Monk.SetNameColor(Color.blue);
 
-            stickman.FaceLeft();
-            mao.FaceLeft();
-            skeleton.FaceLeft();
+            yield return Monk.Say("Customized dialogue here");
 
-            yield return new WaitForSeconds(2f);
+            Monk.ResetConfigurationData();
+
+            yield return Monk.Say("I should be back to normal");
         }
     }
 }

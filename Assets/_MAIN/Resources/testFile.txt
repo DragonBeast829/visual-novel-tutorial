@@ -1,5 +1,0 @@
-Narrator "The main character is <mainChar>"
-
-<mainChar> "My name is <mainChar>.{c} What time is it?"
-
-Narrator "The time is <time>."
