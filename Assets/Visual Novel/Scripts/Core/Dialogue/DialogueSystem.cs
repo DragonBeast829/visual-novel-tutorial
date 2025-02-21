@@ -9,6 +9,7 @@ namespace DIALOGUE {
         public DialogueContainer dialogueContainer = new DialogueContainer();
         private ConversationManager conversationManager;
         private TextArchitect architect;
+        private AutoReader autoReader;
         [SerializeField] private CanvasGroup mainCanvas;
 
         public static DialogueSystem instance { get; private set; }
@@ -40,10 +41,22 @@ namespace DIALOGUE {
             cgController = new CanvasGroupController(this, mainCanvas);
             dialogueContainer.Initialize();
 
+            if (TryGetComponent(out autoReader)) {
+                autoReader.Initialize(conversationManager);
+            }
+
             _initialized = true;
         }
 
         public void OnUserPrompt_Next() {
+            onUserPrompt_Next?.Invoke();
+
+            if (autoReader != null && autoReader.isOn) {
+                autoReader.Disable();
+            }
+        }
+
+        public void OnSystemPrompt_Next() {
             onUserPrompt_Next?.Invoke();
         }
 

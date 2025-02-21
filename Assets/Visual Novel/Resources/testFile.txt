@@ -1,1 +1,11 @@
 CreateCharacter("Monk as Generic" -e true), Monk.SetSprite("Monk")
+
+Monk "..."
+
+Monk "I am saying something without a wait. I am saying something without a wait. I am saying something without a wait."
+
+Monk "I am saying something.{wa 0.5} I am saying some more things, and more things I am saying. Blah blah blah blah blah blah blah. Grilled cheese sandwich."
+
+Monk "I am saying something without a wait. I am saying something without a wait. I am saying something without a wait."
+
+Monk "..."
