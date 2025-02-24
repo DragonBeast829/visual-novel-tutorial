@@ -79,7 +79,7 @@ namespace CHARACTERS {
         public void UpdateTextCustomizationsOnScreen() => dialogueSystem.ApplySpeakerDataToDialogueContainer(config);
         
         public virtual Coroutine Show(float speedMultipler = 1f) {
-            if (isRevealing) return co_revealing;
+            if (isRevealing) characterManager.StopCoroutine(co_revealing);
 
             if (isHiding) characterManager.StopCoroutine(co_hiding);
 
@@ -91,7 +91,7 @@ namespace CHARACTERS {
         public virtual Coroutine Hide(float speedMultipler = 1f) {
             if (isHiding) return co_hiding;
 
-            if (isRevealing) characterManager.StopCoroutine(co_revealing);
+            if (isRevealing) characterManager.StopCoroutine(co_hiding);
 
             co_hiding = characterManager.StartCoroutine(ShowingOrHiding(false, speedMultipler));
 
@@ -178,9 +178,7 @@ namespace CHARACTERS {
         }
 
         public Coroutine Highlight(float speed = 1f, bool immediate = false) {
-            if (isHighlighting) return co_highlighting;
-
-            if (isUnhighlighting) characterManager.StopCoroutine(co_highlighting);
+            if (isHighlighting || isUnhighlighting) characterManager.StopCoroutine(co_highlighting);
 
             highlighted = true;
 
@@ -190,9 +188,7 @@ namespace CHARACTERS {
         }
         
         public Coroutine Unhighlight(float speed = 1f, bool immediate = false) {
-            if (isUnhighlighting) return co_highlighting;
-
-            if (isHighlighting) characterManager.StopCoroutine(co_highlighting);
+            if (isHighlighting || isUnhighlighting) characterManager.StopCoroutine(co_highlighting);
 
             highlighted = false;
 

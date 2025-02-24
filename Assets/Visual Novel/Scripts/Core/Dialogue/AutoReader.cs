@@ -59,7 +59,6 @@ namespace DIALOGUE {
             if (!architect.isBuilding && architect.currentText != string.Empty) {
                 DialogueSystem.instance.OnSystemPrompt_Next();
             }
-
             while (conversationManager.isRunning) {
                 // read and wait
                 if (!skip) {
@@ -92,6 +91,8 @@ namespace DIALOGUE {
         }
 
         public void Toggle_Auto() {
+            bool prevSkip = skip;
+            skip = false;
             if (skip) {
                 Enable();
             } else if (!isOn) {
@@ -99,19 +100,19 @@ namespace DIALOGUE {
             } else {
                 Disable();
             }
-            skip = false;
             statusText.text = STATUS_TEXT_AUTO;
         }
 
         public void Toggle_Skip() {
-            if (!skip) {
+            bool prevSkip = skip;
+            skip = true;
+            if (!prevSkip) {
                 Enable();
             } else if (!isOn) {
                 Enable();
             } else {
                 Disable();
             }
-            skip = true;
             statusText.text = STATUS_TEXT_SKIP;
         }
     }

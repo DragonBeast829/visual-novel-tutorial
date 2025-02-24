@@ -11,7 +11,7 @@ public class GraphicLayer
     public Transform panel;
 
     public GraphicObject currentGraphic = null;
-    private List<GraphicObject> oldGraphics = new List<GraphicObject>();
+    public List<GraphicObject> oldGraphics = new List<GraphicObject>();
 
     public Coroutine SetTexture(string filePath, float transitionSpeed = 1f, Texture blendingTexture = null, bool immediate = false) {
         Texture tex = Resources.Load<Texture>(filePath);
@@ -61,7 +61,9 @@ public class GraphicLayer
     }
 
     public void DestroyOldGraphics() {
-        foreach(var g in oldGraphics) Object.Destroy(g.renderer.gameObject);
+        foreach(var g in oldGraphics) {
+            Object.Destroy(g.renderer.gameObject);
+        }
         oldGraphics.Clear();
     }
 
