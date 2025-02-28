@@ -12,7 +12,7 @@ public class TagManager
     }
 
     private void InitializeTags() {
-        tags["<mainChar>"] = () => "Avira";
+        tags["<mainChar>"] = () => "Name";
         tags["<time>"] = () => DateTime.Now.ToString("hh:mm tt");
     }
 

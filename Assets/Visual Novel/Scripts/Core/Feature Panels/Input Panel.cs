@@ -6,6 +6,8 @@ using TMPro;
 
 public class InputPanel : MonoBehaviour
 {
+    public static InputPanel instance { get; private set; }
+
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private Button acceptButton;
@@ -15,6 +17,10 @@ public class InputPanel : MonoBehaviour
 
     public string lastInput { get; private set; } = string.Empty;
     public bool isWaitingOnUserInput { get; private set; }
+
+    private void Awake() {
+        instance = this;
+    }
 
     void Start()
     {

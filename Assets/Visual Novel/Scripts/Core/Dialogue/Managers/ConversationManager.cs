@@ -5,6 +5,7 @@ using COMMANDS;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using DIALOGUE.LogicalLines;
 
 namespace DIALOGUE {
     public class ConversationManager {
@@ -16,12 +17,14 @@ namespace DIALOGUE {
         private bool userPrompt = false;
 
         private TagManager tagManager;
+        private LogicalLineManager logicalLineManager;
 
         public ConversationManager(TextArchitect architect) {
             this.architect = architect;
             dialogueSystem.onUserPrompt_Next += OnUserPrompt_Next;
 
-            tagManager = new TagManager();
+            tagManager = new();
+            logicalLineManager = new();
         }
 
         private void OnUserPrompt_Next() {
@@ -52,21 +55,24 @@ namespace DIALOGUE {
 
                 DIALOGUE_LINE line = DialogueParser.Parse(conversation[i]);
 
-                if (line.hasDialogue) {
-                    yield return Line_RunDialogue(line);
-                }
+                if (logicalLineManager.TryGetLogic(line, out Coroutine logic)) {
+                    yield return logic;
+                } else {
+                    if (line.hasDialogue) {
+                        yield return Line_RunDialogue(line);
+                    }
 
-                if (line.hasCommands) {
-                    yield return Line_RunCommands(line);
-                }
+                    if (line.hasCommands) {
+                        yield return Line_RunCommands(line);
+                    }
 
-                // wait for user input if dialogue was in this line
-                if (line.hasDialogue) {
-                    yield return WaitForUserInput();
+                    // wait for user input if dialogue was in this line
+                    if (line.hasDialogue) {
+                        yield return WaitForUserInput();
 
-                    CommandManager.instance.StopAllProcesses();
+                        CommandManager.instance.StopAllProcesses();
+                    }
                 }
-;
             }
         }
 

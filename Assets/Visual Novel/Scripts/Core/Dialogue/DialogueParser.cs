@@ -11,7 +11,7 @@ namespace DIALOGUE {
 
             (string speaker, string dialogue, string commands) = RipContent(rawLine);
 
-            return new DIALOGUE_LINE(speaker, dialogue, commands);
+            return new DIALOGUE_LINE(rawLine, speaker, dialogue, commands);
         }
         private static (string, string, string) RipContent(string rawLine) {
             string speaker = "";
