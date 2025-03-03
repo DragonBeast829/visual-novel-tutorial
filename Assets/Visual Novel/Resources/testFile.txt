@@ -4,4 +4,4 @@ Monk "What is your name?"
 
 input "Input your name"
 
-Monk "Nice to meet you, <mainChar>."
+Monk "Nice to meet you, <input>."

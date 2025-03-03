@@ -14,6 +14,7 @@ public class TagManager
     private void InitializeTags() {
         tags["<mainChar>"] = () => "Name";
         tags["<time>"] = () => DateTime.Now.ToString("hh:mm tt");
+        tags["<input>"] = () => InputPanel.instance.lastInput;
     }
 
     public string Inject(string text) {
