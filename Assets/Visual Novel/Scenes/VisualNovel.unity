@@ -5130,6 +5130,7 @@ Transform:
   - {fileID: 755242145}
   - {fileID: 589020316}
   - {fileID: 822755119}
+  - {fileID: 1170158912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &93959118
@@ -38150,6 +38151,7 @@ GameObject:
   - component: {fileID: 615153339}
   - component: {fileID: 615153341}
   - component: {fileID: 615153340}
+  - component: {fileID: 615153342}
   m_Layer: 5
   m_Name: Choice Panel
   m_TagString: Untagged
@@ -38215,6 +38217,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615153338}
   m_CullTransparentMesh: 1
+--- !u!225 &615153342
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615153338}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!43 &615625265
 Mesh:
   m_ObjectHideFlags: 0
@@ -45135,7 +45149,6 @@ GameObject:
   - component: {fileID: 780679487}
   - component: {fileID: 780679486}
   - component: {fileID: 780679485}
-  - component: {fileID: 780679484}
   m_Layer: 5
   m_Name: Layout Group
   m_TagString: Untagged
@@ -45164,18 +45177,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 66}
   m_SizeDelta: {x: -402.61, y: -178.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &780679484
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780679482}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &780679485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63587,7 +63588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1112963743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63603,10 +63604,10 @@ RectTransform:
   - {fileID: 1740481196}
   m_Father: {fileID: 780679483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 198.695, y: -180.77863}
+  m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1112963744
 MonoBehaviour:
@@ -64493,7 +64494,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -67652,6 +67653,54 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1170158911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170158912}
+  - component: {fileID: 1170158913}
+  m_Layer: 0
+  m_Name: Choice Panel Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170158912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170158911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 92243874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1170158913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170158911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb7f2c379a16994ba534109e81ff2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 615153342}
+  titleText: {fileID: 1120109340}
+  choiceButtonPrefab: {fileID: 1112963742}
+  buttonLayoutGroup: {fileID: 780679485}
 --- !u!43 &1170531727
 Mesh:
   m_ObjectHideFlags: 0
@@ -93889,6 +93938,7 @@ GameObject:
   - component: {fileID: 1654611041}
   - component: {fileID: 1654611042}
   - component: {fileID: 1654611043}
+  - component: {fileID: 1654611044}
   m_Layer: 0
   m_Name: Testing
   m_TagString: Untagged
@@ -93930,7 +93980,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654611038}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72a7d47ff4bc08a45bdc61cee83ca4cc, type: 3}
   m_Name: 
@@ -93962,6 +94012,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputPanel: {fileID: 822755120}
+--- !u!114 &1654611044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654611038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b6b6c8272a5724f8df2451e7b7afc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1663515810
 Mesh:
   m_ObjectHideFlags: 0
@@ -98284,10 +98346,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1112963743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.056, y: 0.14285715}
+  m_AnchorMax: {x: 0.9480001, y: 0.8571428}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1740481197
 MonoBehaviour:
