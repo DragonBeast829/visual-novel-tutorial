@@ -19,24 +19,33 @@ namespace DIALOGUE {
         private TagManager tagManager;
         private LogicalLineManager logicalLineManager;
 
+        public Conversation conversation => conversationQueue.IsEmpty() ? null : conversationQueue.top;
+        private ConversationQueue conversationQueue;
+
         public ConversationManager(TextArchitect architect) {
             this.architect = architect;
             dialogueSystem.onUserPrompt_Next += OnUserPrompt_Next;
 
             tagManager = new();
             logicalLineManager = new();
+
+            conversationQueue = new();
         }
+
+        public void Enqueue(Conversation conversation) => conversationQueue.Enqueue(conversation);
+        public void EnqueuePriority(Conversation conversation) => conversationQueue.EnqueuePriority(conversation);
 
         private void OnUserPrompt_Next() {
             userPrompt = true;
         }
 
-        public Coroutine StartConversation(List<string> conversation) {
-            Debug.Log("Stopping previous conversation");
+        public Coroutine StartConversation(Conversation conversation) {
             StopConversation();
 
+            Enqueue(conversation);
+
             Debug.Log("Start a new conversation");
-            process = dialogueSystem.StartCoroutine(RunningConversation(conversation));
+            process = dialogueSystem.StartCoroutine(RunningConversation());
 
             return process;
         }
@@ -48,12 +57,18 @@ namespace DIALOGUE {
             process = null;
         }
 
-        IEnumerator RunningConversation(List<string> conversation) {
-            for (int i = 0; i < conversation.Count; i++) {
-                // ignore blank lines
-                if (string.IsNullOrWhiteSpace(conversation[i])) continue;
+        IEnumerator RunningConversation() {
+            while (!conversationQueue.IsEmpty()) {
+                Conversation currentConversation = conversation;
 
-                DIALOGUE_LINE line = DialogueParser.Parse(conversation[i]);
+                string rawLine = conversation.CurrentLine();
+
+                // ignore blank lines
+                if (string.IsNullOrWhiteSpace(rawLine)) {
+                    TryAdvanceConversation(currentConversation);
+                }
+
+                DIALOGUE_LINE line = DialogueParser.Parse(rawLine);
 
                 if (logicalLineManager.TryGetLogic(line, out Coroutine logic)) {
                     yield return logic;
@@ -73,6 +88,16 @@ namespace DIALOGUE {
                         CommandManager.instance.StopAllProcesses();
                     }
                 }
+
+                TryAdvanceConversation(currentConversation);
+            }
+            process = null;
+        }
+
+        private void TryAdvanceConversation(Conversation conversation) {
+            conversation.IncrementProgress();
+            if (conversation.HasReachedEnd()) {
+                conversationQueue.Dequeue();
             }
         }
 
