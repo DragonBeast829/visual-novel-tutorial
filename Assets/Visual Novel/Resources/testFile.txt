@@ -1,7 +1,23 @@
 CreateCharacter("Monk as Generic" -e true), Monk.SetSprite("Monk")
 
-Monk "What is your name?"
+Monk "What is your favorite color?"
 
-input "Input your name"
-
-Monk "Nice to meet you, <input>."
+choice "What is your favorite color?"
+{
+    -Blue
+        Monk "Blue, like the ocean or sky."
+    -Red
+        Monk "Red, like fire."
+    -Green
+        Monk "Green, like the grass."
+    -Periwinkle
+        Monk "I don't even know what color that is."
+        choice "What is that color?"
+        {
+            -It's like a blue.
+                Monk "Blue, like the ocean or sky."
+            -It's like a violet.
+                Monk "Violet, like the flowers."
+        }
+        Monk "..Periwinkle sounds like it would be a blue-green, though."
+}
