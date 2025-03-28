@@ -16,7 +16,6 @@ namespace DIALOGUE {
         public TextArchitect architect = null;
         private bool userPrompt = false;
 
-        private TagManager tagManager;
         private LogicalLineManager logicalLineManager;
 
         public Conversation conversation => conversationQueue.IsEmpty() ? null : conversationQueue.top;
@@ -27,7 +26,6 @@ namespace DIALOGUE {
             this.architect = architect;
             dialogueSystem.onUserPrompt_Next += OnUserPrompt_Next;
 
-            tagManager = new();
             logicalLineManager = new();
 
             conversationQueue = new();
@@ -136,7 +134,7 @@ namespace DIALOGUE {
                 character.Show();
             }
 
-            dialogueSystem.ShowSpeakerName(tagManager.Inject(speakerData.displayName));
+            dialogueSystem.ShowSpeakerName(TagManager.Inject(speakerData.displayName));
             DialogueSystem.instance.ApplySpeakerDataToDialogueContainer(speakerData.name);
 
             if (speakerData.isCastingExpressions) {
@@ -200,7 +198,7 @@ namespace DIALOGUE {
         }
 
         IEnumerator BuildDialogue(string dialogue, bool append = false) {
-            dialogue = tagManager.Inject(dialogue);
+            dialogue = TagManager.Inject(dialogue);
 
             if (!append) {
                 architect.Build(dialogue);

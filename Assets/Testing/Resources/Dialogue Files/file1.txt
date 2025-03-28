@@ -1,14 +1,3 @@
-CreateCharacter(Stickman -e true -i true)
+Input "What is your name?"
 
-Stickman "This is file 1."
-choice "Which file?"
-{
-    -2
-        Stickman "Going to file 2."
-        Load(file2 -enqueue true)
-    -3
-        Stickman "Going to file 3."
-        Load(file3)
-}
-
-Stickman "..."
+Stickman "It is nice to meet you, <input>."
