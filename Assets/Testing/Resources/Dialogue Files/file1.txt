@@ -1,3 +1,17 @@
-Input "What is your name?"
+Stickman "blah"
 
-Stickman "It is nice to meet you, <input>."
+choice "blah"
+{
+    -Foo
+        Stickman "foo"
+    -Bar
+        Stickman "bar"
+}
+
+choice "asdfadsf"
+{
+    -Baz
+        Stickman "baz"
+    -Qux
+        Stickman "qux"
+}
