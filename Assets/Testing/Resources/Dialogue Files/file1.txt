@@ -1,17 +1,9 @@
-Stickman "blah"
+input "What is your name?"
 
-choice "blah"
-{
-    -Foo
-        Stickman "foo"
-    -Bar
-        Stickman "bar"
-}
+$name = "The Amazing <input>"
 
-choice "asdfadsf"
-{
-    -Baz
-        Stickman "baz"
-    -Qux
-        Stickman "qux"
-}
+narrator "You are $name!"
+
+$name += " From Outer Space"
+
+narrator "You are now $name"
