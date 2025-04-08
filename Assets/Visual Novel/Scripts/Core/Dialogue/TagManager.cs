@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 
 public class TagManager
 {
@@ -41,13 +42,28 @@ public class TagManager
 
         for (int i = matchesList.Count - 1; i >= 0; i--) {
             var match = matchesList[i];
-            string variableName = match.Value.TrimStart(VariableStore.VARIABLE_ID);
+            string variableName = match.Value.TrimStart(VariableStore.VARIABLE_ID, '!');
+            bool negate = match.Value.StartsWith('!');
+
+            bool endsInIllegalCharacter = variableName.EndsWith(VariableStore.DATABASE_VARIABLE_RELATIONAL_ID);
+            if (endsInIllegalCharacter) {
+                variableName = variableName.Substring(0, variableName.Length - 1);
+            }
+
             if (!VariableStore.TryGetValue(variableName, out object variableValue)) {
-                UnityEngine.Debug.LogError($"Variable {variableName} not found in string assigment");
+                UnityEngine.Debug.LogError($"Variable {variableName} not found in string assignment");
                 continue;
             }
 
+            
+            if (negate && variableValue is bool) {
+                variableValue = !(bool)variableValue;
+            }
+
             int lengthTobeRemoved = match.Index + match.Length > value.Length ? value.Length - match.Index : match.Length;
+            if (endsInIllegalCharacter) {
+                lengthTobeRemoved -= 1;
+            }
 
             value = value.Remove(match.Index, lengthTobeRemoved);
             value = value.Insert(match.Index, variableValue.ToString());

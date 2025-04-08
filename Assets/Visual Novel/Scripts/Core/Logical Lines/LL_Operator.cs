@@ -16,7 +16,7 @@ namespace DIALOGUE.LogicalLines {
             string trimmedLine = line.rawData.Trim();
             string[] parts = Regex.Split(trimmedLine, REGEX_ARITHMATIC);
 
-            if (parts.Length > 3) {
+            if (parts.Length < 3) {
                 Debug.LogError($"Invalid command: {trimmedLine}");
                 yield break;
             }
