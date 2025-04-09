@@ -37,7 +37,7 @@ namespace DIALOGUE.LogicalLines {
             currentConversation.SetProgress(ifData.endingIndex);
 
             EncapsulatedData selectedData = conditionResult ? ifData : elseData;
-            if (selectedData.lines.Count > 0) {
+            if (!selectedData.isNull && selectedData.lines.Count > 0) {
                 Conversation newConversation = new Conversation(selectedData.lines);
 
                 // Set the conversation progress to wherever it needs to go to after the condition
