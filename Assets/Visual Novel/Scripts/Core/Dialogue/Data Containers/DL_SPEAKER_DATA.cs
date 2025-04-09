@@ -43,7 +43,7 @@ namespace DIALOGUE {
             MatchCollection matches = Regex.Matches(rawSpeaker, pattern);
 
             castName = "";
-            castPosition = Vector2.zero;
+            castPosition = new Vector2(0.5f, 0); // This is done instead of Vector2.zero as Vector2.zero moves the character to the left of the screen
             CastExpressions = new List<(int layer, string expression)>();
 
             if (matches.Count == 0) {

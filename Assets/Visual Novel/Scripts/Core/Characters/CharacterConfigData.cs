@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DIALOGUE;
 using TMPro;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 namespace CHARACTERS {
     [System.Serializable]
@@ -19,6 +20,9 @@ namespace CHARACTERS {
 
         public float nameFontScale;
         public float dialogueFontScale;
+
+        [SerializedDictionary("Path / ID", "Sprite")]
+        public SerializedDictionary<string, Sprite> sprites = new SerializedDictionary<string, Sprite>();
 
         public CharacterConfigData Copy() {
             CharacterConfigData result = new CharacterConfigData();

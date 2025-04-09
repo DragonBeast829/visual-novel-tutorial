@@ -52,6 +52,12 @@ namespace CHARACTERS {
         }
 
         public Sprite GetSprite(string spriteName) {
+            if (config.sprites.Count > 0) {
+                if (config.sprites.TryGetValue(spriteName, out Sprite sprite)) {
+                    return sprite;
+                }
+            }
+            // If the character doesn't have the sprites listed, check the Resources folder
             if (config.characterType == CharacterType.SpriteSheet) {
                 string[] data = spriteName.Split(SPRITESHEET_TEX_SPRITE_DELIMITER);
                 

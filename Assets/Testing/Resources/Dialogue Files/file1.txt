@@ -1,14 +1,1 @@
-choice "Where do we go?"
-{
-    -The Forest
-        $choice = Forest
-    -The Cave
-        $choice = Cave
-}
-
-if ($choice == Cave)
-{
-    narrator "To the cave we go!"
-}
-
-narrator "What are we waiting for, let's go to The $choice!"
+enter Raelin [0:Raelin_1,1:Raelin_6] "Hi!"
