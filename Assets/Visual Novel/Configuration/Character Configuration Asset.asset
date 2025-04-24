@@ -22,6 +22,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: ffa5a4cc46a31cf41b8c4ae60b57f04f, type: 2}
     nameFontScale: 2
     dialogueFontScale: 1.2
+    sprites:
+      _serializedList: []
   - name: Stickman
     alias: 
     characterType: 1
@@ -31,6 +33,28 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 0b4ccdafaaed54840b6e0077e6d9fbcc, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList:
+      - Key: 1
+        Value: {fileID: 21300000, guid: d7d4f140baa2b794f8de41ccf0e6d20f, type: 3}
+      - Key: 2
+        Value: {fileID: 21300000, guid: f608d193754d6b64c8abc9922efea58f, type: 3}
+      - Key: angry 1
+        Value: {fileID: 21300000, guid: f1868ca811a00dc408034de08e8ec489, type: 3}
+      - Key: angry 2
+        Value: {fileID: 21300000, guid: 597fc8a994a267447a5c2c9861ad1031, type: 3}
+      - Key: happy 1
+        Value: {fileID: 21300000, guid: 5f5de4156d9b0de4c98ce2e4aa5acb64, type: 3}
+      - Key: happy 2
+        Value: {fileID: 21300000, guid: 2d740bd6a12edbe41a0ccbc363d7c90f, type: 3}
+      - Key: psychotic 1
+        Value: {fileID: 21300000, guid: 12f461de47fb0b14b9aeee78aafcccf3, type: 3}
+      - Key: psychotic 2
+        Value: {fileID: 21300000, guid: 3de6a77c6c041894e8651bf49eb5a30f, type: 3}
+      - Key: sad 1
+        Value: {fileID: 21300000, guid: 40f202025c08b994fad0123f6f21ca4c, type: 3}
+      - Key: sad 2
+        Value: {fileID: 21300000, guid: e82a222ba136d4b4db385657217659e8, type: 3}
   - name: Raelin
     alias: 
     characterType: 2
@@ -40,6 +64,56 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: fe007923094e533429c0f7279e2a857c, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList:
+      - Key: Raelin_0
+        Value: {fileID: -539901293, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_4
+        Value: {fileID: 877658820, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_1
+        Value: {fileID: 371039983, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_2
+        Value: {fileID: 2143271235, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_3
+        Value: {fileID: -984643779, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_5
+        Value: {fileID: 1533307292, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_6
+        Value: {fileID: -231494423, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_7
+        Value: {fileID: 455040721, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_8
+        Value: {fileID: -861763730, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_9
+        Value: {fileID: 1731016576, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_10
+        Value: {fileID: 1799884572, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_11
+        Value: {fileID: -1818594040, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_12
+        Value: {fileID: 752875108, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_13
+        Value: {fileID: -810301392, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_14
+        Value: {fileID: 1930344441, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_15
+        Value: {fileID: -1720575887, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_16
+        Value: {fileID: 1148731873, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_17
+        Value: {fileID: 2089198746, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_18
+        Value: {fileID: -819501888, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_19
+        Value: {fileID: -1330446141, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_20
+        Value: {fileID: -12134526, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_21
+        Value: {fileID: -899087398, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_22
+        Value: {fileID: -831843799, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
+      - Key: Raelin_23
+        Value: {fileID: 2079976379, guid: 418997cd131ebf84fac6b738543fe03f, type: 3}
   - name: Generic
     alias: 
     characterType: 2
@@ -49,6 +123,16 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: af29e82c2e47e344585e5130011db2ca, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList:
+      - Key: Guard
+        Value: {fileID: -1957405950, guid: 6c007007286b401479daf6bba1200421, type: 3}
+      - Key: Girl
+        Value: {fileID: 1080889024, guid: 6c007007286b401479daf6bba1200421, type: 3}
+      - Key: Man
+        Value: {fileID: -964242304, guid: 6c007007286b401479daf6bba1200421, type: 3}
+      - Key: Monk
+        Value: {fileID: 868266631, guid: 6c007007286b401479daf6bba1200421, type: 3}
   - name: Female Student 2
     alias: 
     characterType: 1
@@ -58,6 +142,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 2ddd733fb9a1fc44283d595c7f08a65e, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Mao
     alias: 
     characterType: 3
@@ -67,6 +153,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Koharu
     alias: 
     characterType: 3
@@ -76,6 +164,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Natori
     alias: 
     characterType: 3
@@ -85,6 +175,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Rice
     alias: 
     characterType: 3
@@ -94,6 +186,8 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []
   - name: Skeleton
     alias: 
     characterType: 4
@@ -103,3 +197,5 @@ MonoBehaviour:
     dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
     nameFontScale: 1
     dialogueFontScale: 1
+    sprites:
+      _serializedList: []

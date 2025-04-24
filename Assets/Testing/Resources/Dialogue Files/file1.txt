@@ -1,1 +1,4 @@
-enter Raelin [0:Raelin_1,1:Raelin_6] "Hi!"
+SetLayerMedia(-panel background -media villagenight)
+
+enter Raelin "Hi!"
+enter Stickman "Hello."

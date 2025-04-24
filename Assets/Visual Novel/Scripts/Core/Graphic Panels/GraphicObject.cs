@@ -19,9 +19,12 @@ public class GraphicObject
 
     private GraphicLayer layer;
 
-    public bool isVideo { get { return video != null; } }
+    public bool isVideo  => video != null;
+    public bool useAudio => audio != null ? !audio.mute : false;
+
     public VideoPlayer video = null;
     public AudioSource audio = null;
+
     public string graphicPath = "";
     public string graphicName { get; private set; }
 
@@ -44,14 +47,19 @@ public class GraphicObject
     public GraphicObject(GraphicLayer layer, string graphicPath, VideoClip clip, bool useAudio, bool immediate) {
         this.graphicPath = graphicPath;
         this.layer = layer;
+
         GameObject ob = new GameObject();
         ob.transform.SetParent(layer.panel);
         renderer = ob.AddComponent<RawImage>();
+
         graphicName = clip.name;
         renderer.name = string.Format(NAME_FORMAT, graphicName);
+
         InitGraphic(immediate);
+
         RenderTexture tex = new RenderTexture(Mathf.RoundToInt(clip.width), Mathf.RoundToInt(clip.height), 0);
         renderer.material.SetTexture(MATERIAL_FIELD_MAINTEX, tex); 
+
         video = renderer.AddComponent<VideoPlayer>();
         video.playOnAwake = true;
         video.source = VideoSource.VideoClip;
@@ -59,14 +67,21 @@ public class GraphicObject
         video.renderMode = VideoRenderMode.RenderTexture;
         video.targetTexture = tex;
         video.isLooping = true;
+
         video.audioOutputMode = VideoAudioOutputMode.AudioSource;
         audio = video.AddComponent<AudioSource>();
+
         audio.volume = immediate ? 1 : 0;
-        if (!useAudio) audio.mute = true;
+        if (!useAudio) {
+            audio.mute = true;
+        }
+
         video.SetTargetAudioSource(0, audio);
+
         video.frame = 0;
         video.Prepare();
         video.Play();
+
         video.enabled = false;
         video.enabled = true;
     }

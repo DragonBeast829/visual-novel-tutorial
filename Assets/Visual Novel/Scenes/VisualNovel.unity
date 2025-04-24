@@ -10285,7 +10285,7 @@ MonoBehaviour:
     root: {fileID: 655691838}
     nameContainer:
       root: {fileID: 495679762}
-      nameText: {fileID: 1968731223}
+      <nameText>k__BackingField: {fileID: 1968731223}
     dialogueText: {fileID: 1564460936}
   mainCanvas: {fileID: 1241543173}
   prompt: {fileID: 1486314940}
@@ -93941,6 +93941,7 @@ GameObject:
   - component: {fileID: 1654611044}
   - component: {fileID: 1654611045}
   - component: {fileID: 1654611046}
+  - component: {fileID: 1654611047}
   m_Layer: 0
   m_Name: Testing
   m_TagString: Untagged
@@ -94054,6 +94055,28 @@ MonoBehaviour:
   var_flt: 0
   var_bool: 0
   var_str: 
+--- !u!114 &1654611047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654611038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce84ad095c28e2144a8ca3c7cebe753b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    currentDialogue: 
+    currentSpeaker: 
+    dialogueFont: 
+    dialogueColor: {r: 0, g: 0, b: 0, a: 0}
+    dialogueScale: 0
+    speakerFont: 
+    speakerNameColor: {r: 0, g: 0, b: 0, a: 0}
+    speakerScale: 0
+  audioData: []
 --- !u!43 &1663515810
 Mesh:
   m_ObjectHideFlags: 0
