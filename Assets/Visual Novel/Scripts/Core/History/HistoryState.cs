@@ -22,7 +22,10 @@ namespace History {
         }
 
         public void Load() {
-            
+            DialogueData.Apply(dialogue);
+            CharacterData.Apply(characters);
+            AudioData.Apply(audios);
+            GraphicData.Apply(graphics);
         }
     }
 }

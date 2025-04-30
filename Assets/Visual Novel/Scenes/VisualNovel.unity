@@ -44305,12 +44305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258b93278d444c145b2aae259e014784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allPanels:
-  - panelName: Background
+  <allPanels>k__BackingField:
+  - panelName: background
     rootPanel: {fileID: 117341938}
-  - panelName: Cinematic
+  - panelName: cinematic
     rootPanel: {fileID: 453435290}
-  - panelName: Foreground
+  - panelName: foreground
     rootPanel: {fileID: 960534069}
 --- !u!43 &758830381
 Mesh:
@@ -94077,6 +94077,8 @@ MonoBehaviour:
     speakerNameColor: {r: 0, g: 0, b: 0, a: 0}
     speakerScale: 0
   audioData: []
+  graphicData: []
+  characterData: []
 --- !u!43 &1663515810
 Mesh:
   m_ObjectHideFlags: 0

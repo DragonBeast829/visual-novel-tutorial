@@ -1,4 +1,5 @@
-SetLayerMedia(-panel background -media villagenight)
+narrator "Nothing is happening. How boring."
 
-enter Raelin "Hi!"
-enter Stickman "Hello."
+SetLayerMedia(-panel background -media villagenight)
+PlayAmbience(rainyMood)
+enter Stickman "Hello! I'm saying some stuff here."
