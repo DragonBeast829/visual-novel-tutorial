@@ -146,7 +146,7 @@ namespace History {
                         SpriteData sData = JsonUtility.FromJson<SpriteData>(characterData.dataJSON);
                         CharacterSprite sc = character as CharacterSprite;
 
-                        for (int i = 0; 0 < sData.layers.Count; i++) {
+                        for (int i = 0; i < sData.layers.Count; i++) {
                             var layer = sData.layers[i];
                             if (sc.layers[i].renderer.sprite != null && sc.layers[i].renderer.sprite.name != layer.spriteName) {
                                 Sprite sprite = sc.GetSprite(layer.spriteName);

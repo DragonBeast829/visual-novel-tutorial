@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -22,6 +21,7 @@ namespace DIALOGUE {
         public bool isOn => co_running != null;
 
         [SerializeField] private TextMeshProUGUI statusText;
+        [HideInInspector] public bool allowToggle = true;
 
         public void Initialize(ConversationManager conversationManager) {
             this.conversationManager = conversationManager;
@@ -91,6 +91,9 @@ namespace DIALOGUE {
         }
 
         public void Toggle_Auto() {
+            if (!allowToggle) {
+                return;
+            }
             bool prevSkip = skip;
             skip = false;
             if (skip) {
@@ -100,10 +103,15 @@ namespace DIALOGUE {
             } else {
                 Disable();
             }
-            statusText.text = STATUS_TEXT_AUTO;
+            if (isOn) {
+                statusText.text = STATUS_TEXT_AUTO;
+            }
         }
 
         public void Toggle_Skip() {
+            if (!allowToggle) {
+                return;
+            }
             bool prevSkip = skip;
             skip = true;
             if (!prevSkip) {
@@ -113,7 +121,11 @@ namespace DIALOGUE {
             } else {
                 Disable();
             }
-            statusText.text = STATUS_TEXT_SKIP;
+
+            if (isOn) {
+                statusText.text = STATUS_TEXT_SKIP;
+            }
+            
         }
     }
 }
