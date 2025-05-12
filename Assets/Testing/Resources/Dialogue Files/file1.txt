@@ -5,13 +5,4 @@ SetLayerMedia(-panel background -media villagenight)
 enter Stickman "Hello! I'm saying some stuff here."
 enter Raelin "I am also saying things here."
 
-narrator "They were saying things."
-
-Stickman "Things."
-
-narrator "More lines 1"
-narrator "More lines 2"
-narrator "More lines 3"
-narrator "More lines 4"
-narrator "More lines 5"
-narrator "More lines 6"
+Stickman.Move(0 0)
