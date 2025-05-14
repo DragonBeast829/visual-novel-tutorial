@@ -244,6 +244,8 @@ namespace CHARACTERS {
 
         public void Animate(string animation) {
             animator.SetTrigger(animation);
+            animator.SetTrigger(ANIMATION_REFRESH_TRIGGER); 
+            Debug.Log("Animating");
         }
 
         public void Animate(string animation, bool state) {

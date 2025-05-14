@@ -7,7 +7,7 @@ namespace History {
     [RequireComponent(typeof(HistoryNavigation))]
     [RequireComponent(typeof(HistoryLogManager))]
     public class HistoryManager : MonoBehaviour {
-        public const int HISTORY_CACHE_LIMIT = 3;
+        public const int HISTORY_CACHE_LIMIT = 50;
         public static HistoryManager instance { get; private set; }
         public List<HistoryState> history = new List<HistoryState>();
 

@@ -69,6 +69,16 @@ public class TextArchitect {
     private Coroutine buildProcess = null;
     public bool isBuilding => buildProcess != null;
 
+    public void SetText(string text) {
+        preText = "";
+        targetText = text;
+
+        Stop();
+
+        tmpro.text = targetText;
+        ForceComplete();
+    }
+
     public void Stop() {
         if (!isBuilding) return;
 
@@ -99,13 +109,13 @@ public class TextArchitect {
     public void ForceComplete() {
         switch (buildMethod) {
             case BuildMethod.Typewriter:
+                tmpro.ForceMeshUpdate();
                 tmpro.maxVisibleCharacters = tmpro.textInfo.characterCount;
                 break;
             case BuildMethod.Fade:
                 tmpro.ForceMeshUpdate();
                 break;
         }
-
         Stop();
         OnComplete();
     }

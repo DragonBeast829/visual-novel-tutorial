@@ -16,18 +16,17 @@ namespace TESTING {
         }
 
         IEnumerator Test() {
-            Character Monk = CreateCharacter("Monk as Generic");
-            
-            yield return Monk.Say("Normal dialogue configuration");
+            CharacterSprite Stickman = CreateCharacter("Stickman") as CharacterSprite;
 
-            Monk.SetDialogueColor(Color.red);
-            Monk.SetNameColor(Color.blue);
+            Stickman.SetPosition(new Vector2(0, 0));
+            Stickman.Show();
 
-            yield return Monk.Say("Customized dialogue here");
-
-            Monk.ResetConfigurationData();
-
-            yield return Monk.Say("I should be back to normal");
+            yield return Stickman.Say("Blah blah blah");
+            yield return Stickman.Say("Blah blah blah");
+            Debug.Log("a");
+            Stickman.Animate("Shiver");
+            yield return Stickman.Say("Blah blah blah");
+            yield return Stickman.Say("Blah blah blah");
         }
     }
 }

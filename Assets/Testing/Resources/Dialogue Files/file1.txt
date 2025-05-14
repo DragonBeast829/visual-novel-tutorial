@@ -1,8 +1,7 @@
-narrator "Nothing is happening. How boring."
-
-SetLayerMedia(-panel background -media villagenight)
-
-enter Stickman "Hello! I'm saying some stuff here."
-enter Raelin "I am also saying things here."
-
-Stickman.Move(0 0)
+enter Stickman "blah"
+Stickman "blah"
+Stickman "blah"
+stickman.Animate(-name Shiver)
+Stickman "blah"
+Stickman "blah"
+Stickman "blah"

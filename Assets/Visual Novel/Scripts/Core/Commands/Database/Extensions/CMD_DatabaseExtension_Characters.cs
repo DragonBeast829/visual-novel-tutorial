@@ -34,6 +34,7 @@ namespace COMMANDS {
             baseCommands.AddCommand("setcolor", new Func<string[], IEnumerator>(SetColor));
             baseCommands.AddCommand("highlight", new Func<string[], IEnumerator>(Highlight));
             baseCommands.AddCommand("unhighlight", new Func<string[], IEnumerator>(Unhighlight));
+            baseCommands.AddCommand("animate", new Func<string[], IEnumerator>(Animate));
 
             CommandDatabase spriteCommands = CommandManager.instance.CreateSubDatabase(CommandManager.DATABASE_CHARACTERS_SPRITE);
             spriteCommands.AddCommand("setsprite", new Func<string[], IEnumerator>(SetSprite));
@@ -166,6 +167,26 @@ namespace COMMANDS {
                 CommandManager.instance.AddTerminationActionToCurrentProcess(() => { if (character != null) character.isVisible = true; });
 
                 yield return character.Show();
+            }
+        }
+
+        private static IEnumerator Animate(string[] data) {
+            Character character = CharacterManager.instance.GetCharacter(data[0]);
+
+            if (character == null) yield break;
+
+            var parameters = ConvertDataToParameters(data);
+
+            string name = null;
+            bool? state = null;
+
+            parameters.TryGetValue("-name", out name, defaultValue: "");
+            parameters.TryGetValue("-state", out state);
+
+            if (state != null) {
+                character.Animate(name, state ?? false);
+            } else {
+                character.Animate(name);
             }
         }
 

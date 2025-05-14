@@ -43,7 +43,8 @@ namespace History {
             var ds           = DialogueSystem.instance;
             var dialogueText = ds.dialogueContainer.dialogueText;
             var nameText     = ds.dialogueContainer.nameContainer.nameText;
-            dialogueText.text     = data.currentDialogue;
+
+            ds.conversationManager.architect.SetText(data.currentDialogue);
             dialogueText.color    = data.dialogueColor;
             dialogueText.fontSize = data.dialogueScale;
 

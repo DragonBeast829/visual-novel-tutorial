@@ -146,7 +146,6 @@ namespace DIALOGUE {
             DialogueSystem.instance.ApplySpeakerDataToDialogueContainer(speakerData.name);
 
             if (speakerData.isCastingExpressions) {
-                Debug.Log(speakerData.castPosition);
                 character.MoveToPosition(speakerData.castPosition);
             }
 
