@@ -12,6 +12,7 @@ namespace DIALOGUE {
         private DialogueSystem dialogueSystem => DialogueSystem.instance;
         private Coroutine process = null;
         public bool isRunning => process != null;
+        public bool isOnLogicalLine { get; private set; } = false;
 
         public TextArchitect architect = null;
         private bool userPrompt = false;
@@ -77,8 +78,8 @@ namespace DIALOGUE {
                 }
 
                 DIALOGUE_LINE line = DialogueParser.Parse(rawLine);
-
                 if (logicalLineManager.TryGetLogic(line, out Coroutine logic)) {
+                    isOnLogicalLine = true;
                     yield return logic;
                 } else {
                     if (line.hasDialogue) {
@@ -101,6 +102,7 @@ namespace DIALOGUE {
 
                 TryAdvanceConversation(currentConversation);
             }
+            isOnLogicalLine = false;
             process = null;
         }
 
