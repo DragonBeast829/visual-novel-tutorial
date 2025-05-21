@@ -19,13 +19,13 @@ namespace DIALOGUE.LogicalLines {
             private const char ENCAPSULATION_START = '{';
             private const char ENCAPSULATION_END = '}';
 
-            public static EncapsulatedData RipEncapsulatedData(Conversation conversation, int startingIndex, bool ripHeadersAndEncapsulators = false) {
+            public static EncapsulatedData RipEncapsulatedData(Conversation conversation, int startingIndex, bool ripHeadersAndEncapsulators = false, int parentStartingIndex = 0) {
                 // Depth is measured to ensure it doesn't prematurely end ripping the choice data.
                 int encapsulationDepth = 0;
 
                 EncapsulatedData data = new() {
                     lines = new(),
-                    startingIndex = startingIndex,
+                    startingIndex = (startingIndex + parentStartingIndex),
                     endingIndex = 0
                 };
 
@@ -46,7 +46,7 @@ namespace DIALOGUE.LogicalLines {
                     if (IsEncapsulationEnd(line)) {
                         encapsulationDepth--;
                         if (encapsulationDepth == 0) {
-                            data.endingIndex = i;
+                            data.endingIndex = (i + parentStartingIndex);
                             break;
                         }
                     }

@@ -16,8 +16,7 @@ namespace DIALOGUE.LogicalLines {
         public IEnumerator Execute(DIALOGUE_LINE line) {
             var currentConversation = DialogueSystem.instance.conversationManager.conversation;
             var progress = DialogueSystem.instance.conversationManager.conversationProgress;
-            EncapsulatedData data = RipEncapsulatedData(currentConversation, progress, ripHeadersAndEncapsulators: true);
-
+            EncapsulatedData data = RipEncapsulatedData(currentConversation, progress, ripHeadersAndEncapsulators: true, parentStartingIndex: currentConversation.fileStartIndex);
             List<Choice> choices = GetChoicesFromData(data);
 
             string title = line.dialogueData.rawData;
@@ -31,7 +30,7 @@ namespace DIALOGUE.LogicalLines {
 
             Choice selectedChoice = choices[panel.lastDecision.answerIndex];
 
-            Conversation newConversation = new(selectedChoice.resultLines);
+            Conversation newConversation = new(selectedChoice.resultLines, file: currentConversation.file, fileStartIndex: selectedChoice.startIndex, fileEndIndex: selectedChoice.endIndex);
 
             DialogueSystem.instance.conversationManager.conversation.SetProgress(data.endingIndex);
             DialogueSystem.instance.conversationManager.EnqueuePriority(newConversation);
@@ -53,16 +52,22 @@ namespace DIALOGUE.LogicalLines {
                 resultLines = new()
             };
 
-            foreach (var line in data.lines.Skip(1)) {
+            //foreach (var line in data.lines.Skip(1)) {
+            int choiceIndex = 0, i = 0;
+            for (i = 1; i < data.lines.Count; i++) {
+                var line = data.lines[i];
                 Debug.Log($"Line: {line}");
                 if (IsChoiceStart(line) && encapsulationDepth == 1) {
                     if (!isFirstChoice) {
+                        choice.startIndex = data.startingIndex + choiceIndex + 1;
+                        choice.endIndex = data.startingIndex + (i - 1);
                         choices.Add(choice);
                         choice = new() {
                             title = string.Empty,
                             resultLines = new()
                         };
                     }
+                    choiceIndex = i;
                     choice.title = line.Trim().Substring(1);
                     isFirstChoice = false;
                     continue;
@@ -72,6 +77,8 @@ namespace DIALOGUE.LogicalLines {
             }
 
             if (!choices.Contains(choice)) {
+                choice.startIndex = data.startingIndex + (choiceIndex + 1);
+                choice.endIndex = data.startingIndex + (i - 1);
                 choices.Add(choice);
             }
 
@@ -104,9 +111,12 @@ namespace DIALOGUE.LogicalLines {
 
         private bool IsChoiceStart(string line) => line.Trim().StartsWith(CHOICE_IDENTIFIER);
 
-        private struct Choice {
+        private struct Choice
+        {
             public string title;
             public List<string> resultLines;
+            public int startIndex;
+            public int endIndex;
         }
     }
 }

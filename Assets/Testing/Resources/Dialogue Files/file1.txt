@@ -1,7 +1,10 @@
 enter Stickman "blah"
 Stickman "blah"
 Stickman "blah"
-stickman.Animate(-name Shiver)
-Stickman "blah"
-Stickman "blah"
-Stickman "blah"
+choice "foo"
+{
+    -bar
+        Stickman "a"
+    -baz
+        Stickman "b"
+}

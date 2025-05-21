@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using DIALOGUE;
+using UnityEditor;
 using UnityEngine;
 
 namespace TESTING {
@@ -12,10 +14,16 @@ namespace TESTING {
             StartConversation();
         }
 
-        void StartConversation() {
-            List<string> lines = FileManager.ReadTextAsset(fileToRead, false);
+        void StartConversation()
+        {
+            string fullPath = AssetDatabase.GetAssetPath(fileToRead);
 
-            DialogueSystem.instance.Say(lines);
+            int resourcesIndex = fullPath.IndexOf("Resources/");
+            string relativePath = fullPath.Substring(resourcesIndex + 10);
+
+            string filePath = Path.ChangeExtension(relativePath, null);
+
+            VNManager.instance.LoadFile(filePath);
         }
 
     }

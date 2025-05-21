@@ -21,14 +21,14 @@ namespace DIALOGUE.LogicalLines {
             Conversation currentConversation = DialogueSystem.instance.conversationManager.conversation;
             int currentProgress = DialogueSystem.instance.conversationManager.conversationProgress;
 
-            EncapsulatedData ifData = RipEncapsulatedData(currentConversation, currentProgress, false);
+            EncapsulatedData ifData = RipEncapsulatedData(currentConversation, currentProgress, false, parentStartingIndex: currentConversation.fileStartIndex);
             EncapsulatedData elseData = new EncapsulatedData();
 
             if (ifData.endingIndex + 1 < currentConversation.Count) {
                 // There are lines after the if data
                 string nextLine = currentConversation.GetLines()[ifData.endingIndex + 1].Trim();
                 if (nextLine == ELSE) {
-                    elseData = RipEncapsulatedData(currentConversation, ifData.endingIndex + 1, false);
+                    elseData = RipEncapsulatedData(currentConversation, ifData.endingIndex + 1, false, parentStartingIndex: currentConversation.fileStartIndex);
 
                     ifData.endingIndex = elseData.endingIndex;
                 }
@@ -38,7 +38,7 @@ namespace DIALOGUE.LogicalLines {
 
             EncapsulatedData selectedData = conditionResult ? ifData : elseData;
             if (!selectedData.isNull && selectedData.lines.Count > 0) {
-                Conversation newConversation = new Conversation(selectedData.lines);
+                Conversation newConversation = new Conversation(selectedData.lines, file: currentConversation.file, fileStartIndex: selectedData.startingIndex, fileEndIndex: selectedData.endingIndex);
 
                 // Set the conversation progress to wherever it needs to go to after the condition
                 DialogueSystem.instance.conversationManager.conversation.SetProgress(selectedData.endingIndex);
